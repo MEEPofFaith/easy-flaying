@@ -1,8 +1,10 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.144'
+    id 'net.neoforged.moddev' version '2.0.141'
     id 'idea'
+    id 'at.petra-k.pkpcpbp.PKJson5Plugin' version "${pkpcpbp_ver}"
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -23,12 +25,59 @@ sourceSets.main.resources {
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
-
     exclude("src/generated/**/.cache") // datagen cache files
 }
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = "BlameJared Maven"
+        url = "https://maven.blamejared.com"
+    }
+    exclusiveContent {
+        forRepository {
+            flatDir {
+                dirs "libs"
+            }
+        }
+        filter {
+            includeGroup "libs"
+        }
+    }
+    maven {
+        name = "Wispforest Maven"
+        url = "https://maven.wispforest.io/releases"
+    }
+    maven {
+        name = "ParchmentMC Maven"
+        url = "https://maven.parchmentmc.org"
+    }
+    maven { url "https://maven.shedaniel.me/" }
+    maven { url 'https://maven.su5ed.dev/releases' }
+
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+    }
+
+    maven {
+        name = 'Kotlin for Forge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
+
+    maven {
+        url = "https://pool.net.eu.org/"
+    }
+
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
+
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    mavenCentral()
 }
 
 base {
@@ -64,6 +113,7 @@ neoForge {
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
+
         // This run config launches GameTestServer and runs all registered gametests, then exits.
         // By default, the server will crash when no gametests are provided.
         // The gametest system is also enabled by default for other run configs under the /test command.
@@ -137,6 +187,14 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+
+    implementation("vazkii.patchouli:Patchouli:$minecraft_version-$patchouli_version-NEOFORGE")
+    implementation("libs:hexcasting-neoforge-$minecraft_version:$hexcasting_version")
+    implementation("libs:paucal:$paucal_version+$minecraft_version-neoforge")
+    implementation("com.samsthenerd.inline:inline-neoforge:$minecraft_version-$inline_version")
+    implementation("dev.architectury:architectury-neoforge:$architectury_api_version")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -187,4 +245,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+kotlin {
+    jvmToolchain(21)
 }
