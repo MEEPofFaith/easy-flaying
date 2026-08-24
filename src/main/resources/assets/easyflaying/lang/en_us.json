@@ -1,0 +1,13 @@
+{
+  "itemGroup.easyflaying": "Example Mod Tab",
+  "block.easyflaying.example_block": "Example Block",
+  "item.easyflaying.example_item": "Example Item",
+
+  "easyflaying.configuration.title": "Easy Flaying Configs",
+  "easyflaying.configuration.section.easyflaying.common.toml": "Easy Flaying Configs",
+  "easyflaying.configuration.section.easyflaying.common.toml.title": "Easy Flaying Configs",
+  "easyflaying.configuration.items": "Item List",
+  "easyflaying.configuration.logDirtBlock": "Log Dirt Block",
+  "easyflaying.configuration.magicNumberIntroduction": "Magic Number Text",
+  "easyflaying.configuration.magicNumber": "Magic Number"
+}
