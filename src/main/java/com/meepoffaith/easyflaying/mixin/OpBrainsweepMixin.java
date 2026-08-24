@@ -1,5 +1,6 @@
 package com.meepoffaith.easyflaying.mixin;
 
+import at.petrak.hexcasting.api.HexAPI;
 import at.petrak.hexcasting.api.casting.OperatorUtils;
 import at.petrak.hexcasting.api.casting.ParticleSpray;
 import at.petrak.hexcasting.api.casting.RenderedSpell;
@@ -15,6 +16,8 @@ import at.petrak.hexcasting.common.casting.actions.spells.great.OpBrainsweep;
 import at.petrak.hexcasting.common.recipe.BrainsweepRecipe;
 import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity;
+import com.meepoffaith.easyflaying.EasyFlaying;
+import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity;
@@ -94,7 +97,7 @@ abstract class OpBrainsweepMixin {
         SpellAction.Result result = new SpellAction.Result(
                 new Spell(targetPos, state, traderBlock, sacrifice, recipe),
                 recipe.mediaCost(),
-                List.of(ParticleSpray.cloud(traderPos.getCenter(), 1.0, 20), ParticleSpray.burst(targetPos.getCenter(), 0.3, 100)),
+                List.of(ParticleSpray.cloud(traderPos.getCenter(), 2.0, 40), ParticleSpray.burst(targetPos.getCenter(), 0.3, 100)),
                 1
             );
 
@@ -121,7 +124,7 @@ abstract class OpBrainsweepMixin {
         public void cast(@NotNull CastingEnvironment env) {
             env.getWorld().setBlockAndUpdate(pos, BrainsweepRecipe.copyProperties(state, recipe.result()));
 
-            // TODO obliterate the villager
+            EasyFlayingUtil.INSTANCE.brainsweep(trader);
 
             var sound = ((AccessorLivingEntity)sacrifice).hex$getDeathSound();
             if(sound != null)
