@@ -12,7 +12,7 @@
     mishap: {
       bad_block: {
         "easyflaying:": {
-          trader: "a trader",
+          trader: "a non-empty trader",
         }
       }
     }

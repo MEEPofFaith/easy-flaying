@@ -1,14 +1,22 @@
 package com.meepoffaith.easyflaying.mixin;
 
 import at.petrak.hexcasting.api.casting.OperatorUtils;
+import at.petrak.hexcasting.api.casting.ParticleSpray;
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.Vec3Iota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock;
+import at.petrak.hexcasting.api.casting.mishaps.MishapBadBrainsweep;
+import at.petrak.hexcasting.api.casting.mishaps.MishapBadLocation;
+import at.petrak.hexcasting.api.mod.HexTags;
 import at.petrak.hexcasting.common.casting.actions.spells.great.OpBrainsweep;
-import com.meepoffaith.easyflaying.EasyFlaying;
+import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
+import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
@@ -33,22 +41,57 @@ abstract class OpBrainsweepMixin {
         CastingEnvironment env,
         CallbackInfoReturnable<SpellAction.Result> cir
     ){
-        Vec3 traderVec = OperatorUtils.getVec3(args, 0, argc); // Mmm yes the Java experience
+        Iota arg0 = args.getFirst();
+        if(!(arg0 instanceof Vec3Iota traderVec)) return; // Go back to original flay mind
         Vec3 targetVec = OperatorUtils.getVec3(args, 1, argc);
-        BlockPos traderPos = BlockPos.containing(traderVec);
+
+        BlockPos traderPos = BlockPos.containing(traderVec.getVec3());
         BlockPos targetPos = BlockPos.containing(targetVec);
+
+        if(!env.canEditBlockAt(targetPos))
+            throw new MishapBadLocation(targetVec, "forbidden");
 
         env.assertPosInRange(traderPos);
         env.assertPosInRange(targetPos);
 
-        EasyFlaying.LOGGER.info("Hello, is this working? Pos1: " + traderPos + " | Pos2: " + targetPos);
-
         var world = env.getWorld();
+
         BlockState trader = world.getBlockState(traderPos);
-        if(trader.getBlock() == ModBlocks.TRADER.get()){
-            EasyFlaying.LOGGER.info("Trader found!");
-        }else{
+        BlockEntity traderEntity = world.getBlockEntity(traderPos);
+
+        if(trader.getBlock() != ModBlocks.TRADER.get() || !(traderEntity instanceof TraderTileentity traderBlock))
             throw MishapBadBlock.of(traderPos, "easyflaying:trader");
-        }
+
+        var sacrifice = traderBlock.getVillagerEntity();
+        if(sacrifice == null)
+            throw MishapBadBlock.of(traderPos, "easyflaying:trader");
+
+        // Flay mind expects a mob, so I can't just convert to an entity iota and pass it in.
+        // Manually re-implement
+        if(sacrifice.getType().is(HexTags.Entities.NO_BRAINSWEEPING))
+            throw new MishapBadBrainsweep(sacrifice, targetPos);
+
+        var state = env.getWorld().getBlockState(targetPos);
+
+        var recman = env.getWorld().getRecipeManager();
+        var recipes = recman.getAllRecipesFor(HexRecipeStuffRegistry.BRAINSWEEP_TYPE.get());
+        var recipeQuestionMark = recipes.stream() // Kotlinless moment
+                .map(RecipeHolder::value)
+                .filter(it -> it.matches(state, sacrifice, env.getWorld()))
+                .findFirst();
+
+        if(recipeQuestionMark.isEmpty())
+            throw new MishapBadBrainsweep(sacrifice, targetPos);
+        var recipe = recipeQuestionMark.get();
+
+        SpellAction.Result result = new SpellAction.Result(
+            new OpBrainsweep.Spell(targetPos, state, sacrifice, recipe),
+            recipe.mediaCost(),
+            List.of(ParticleSpray.cloud(traderPos.getCenter(), 1.0, 20), ParticleSpray.burst(targetPos.getCenter(), 0.3, 100))
+        );
+
+        // TODO: Obliterate the villager
+
+        cir.setReturnValue(result);
     }
 }
