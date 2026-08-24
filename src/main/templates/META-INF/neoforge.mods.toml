@@ -89,10 +89,17 @@ config="${mod_id}.mixins.json"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
+    modId="hexcasting"
+    type="required"
+    versionRange="[0.12.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
     modId="easy_villagers"
     type="required"
-    versionRange="${minecraft_version_range}-[1.1,)"
-    ordering="AFTER"
+    versionRange="[1.1,)"
+    ordering="NONE"
     side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
