@@ -43,6 +43,16 @@ repositories {
         filter {
             includeGroup "libs"
         }
+
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
     }
     maven {
         name = "Wispforest Maven"
@@ -195,6 +205,9 @@ dependencies {
     implementation("com.samsthenerd.inline:inline-neoforge:$minecraft_version-$inline_version")
     implementation("dev.architectury:architectury-neoforge:$architectury_api_version")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    // Easy Villagers. Uses modrinth maven
+    implementation "maven.modrinth:Kaov2qgi:${easy_villagers_ID}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
