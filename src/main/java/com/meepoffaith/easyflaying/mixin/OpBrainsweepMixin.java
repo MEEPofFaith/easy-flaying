@@ -105,21 +105,13 @@ abstract class OpBrainsweepMixin {
     }
 
     // Re-implement the flaying spell to handle a villager entity instead of mob
-    private static class Spell implements RenderedSpell{
-        BlockPos pos;
-        BlockState state;
-        TraderTileentity trader;
-        EasyVillagerEntity sacrifice;
-        BrainsweepRecipe recipe;
-
-        public Spell(BlockPos pos, BlockState state, TraderTileentity trader, EasyVillagerEntity sacrifice, BrainsweepRecipe recipe){
-            this.pos = pos;
-            this.state = state;
-            this.trader = trader;
-            this.sacrifice = sacrifice;
-            this.recipe = recipe;
-        }
-
+    private record Spell(
+            BlockPos pos,
+            BlockState state,
+            TraderTileentity trader,
+            EasyVillagerEntity sacrifice,
+            BrainsweepRecipe recipe
+    ) implements RenderedSpell{
         @Override
         public void cast(@NotNull CastingEnvironment env) {
             env.getWorld().setBlockAndUpdate(pos, BrainsweepRecipe.copyProperties(state, recipe.result()));
