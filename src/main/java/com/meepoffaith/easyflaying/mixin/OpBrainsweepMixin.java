@@ -2,6 +2,7 @@ package com.meepoffaith.easyflaying.mixin;
 
 import at.petrak.hexcasting.api.casting.OperatorUtils;
 import at.petrak.hexcasting.api.casting.ParticleSpray;
+import at.petrak.hexcasting.api.casting.RenderedSpell;
 import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
@@ -11,14 +12,21 @@ import at.petrak.hexcasting.api.casting.mishaps.MishapBadBrainsweep;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadLocation;
 import at.petrak.hexcasting.api.mod.HexTags;
 import at.petrak.hexcasting.common.casting.actions.spells.great.OpBrainsweep;
+import at.petrak.hexcasting.common.recipe.BrainsweepRecipe;
 import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
+import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
+import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -66,8 +74,7 @@ abstract class OpBrainsweepMixin {
         if(sacrifice == null)
             throw MishapBadBlock.of(traderPos, "easyflaying:trader");
 
-        // Flay mind expects a mob, so I can't just convert to an entity iota and pass it in.
-        // Manually re-implement
+        // Flay mind expects a mob, so I can't just convert to an entity iota and pass it in. Manually re-implement.
         if(sacrifice.getType().is(HexTags.Entities.NO_BRAINSWEEPING))
             throw new MishapBadBrainsweep(sacrifice, targetPos);
 
@@ -85,13 +92,41 @@ abstract class OpBrainsweepMixin {
         var recipe = recipeQuestionMark.get();
 
         SpellAction.Result result = new SpellAction.Result(
-            new OpBrainsweep.Spell(targetPos, state, sacrifice, recipe),
-            recipe.mediaCost(),
-            List.of(ParticleSpray.cloud(traderPos.getCenter(), 1.0, 20), ParticleSpray.burst(targetPos.getCenter(), 0.3, 100))
-        );
-
-        // TODO: Obliterate the villager
+                new Spell(targetPos, state, traderBlock, sacrifice, recipe),
+                recipe.mediaCost(),
+                List.of(ParticleSpray.cloud(traderPos.getCenter(), 1.0, 20), ParticleSpray.burst(targetPos.getCenter(), 0.3, 100)),
+                1
+            );
 
         cir.setReturnValue(result);
+    }
+
+    // Re-implement the flaying spell to handle a villager entity instead of mob
+    private static class Spell implements RenderedSpell{
+        BlockPos pos;
+        BlockState state;
+        TraderTileentity trader;
+        EasyVillagerEntity sacrifice;
+        BrainsweepRecipe recipe;
+
+        public Spell(BlockPos pos, BlockState state, TraderTileentity trader, EasyVillagerEntity sacrifice, BrainsweepRecipe recipe){
+            this.pos = pos;
+            this.state = state;
+            this.trader = trader;
+            this.sacrifice = sacrifice;
+            this.recipe = recipe;
+        }
+
+        @Override
+        public void cast(@NotNull CastingEnvironment env) {
+            env.getWorld().setBlockAndUpdate(pos, BrainsweepRecipe.copyProperties(state, recipe.result()));
+
+            // TODO obliterate the villager
+
+            var sound = ((AccessorLivingEntity)sacrifice).hex$getDeathSound();
+            if(sound != null)
+                env.getWorld().playSound(null, trader.getBlockPos(), sound, SoundSource.AMBIENT, 0.8f, 1f);
+            env.getWorld().playSound(null, trader.getBlockPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.AMBIENT, 0.5f, 0.8f);
+        }
     }
 }
