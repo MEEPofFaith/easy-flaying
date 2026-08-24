@@ -1,0 +1,20 @@
+{
+  easyflaying: {
+    configuration: {
+      title: "Easy Flaying Configs",
+      "section.easyflaying.common.toml": {
+        "": "Easy Flaying Configs",
+        title: "Easy Flaying Configs"
+      }
+    }
+  },
+  hexcasting: {
+    mishap: {
+      bad_block: {
+        "easyflaying:": {
+          trader: "a trader",
+        }
+      }
+    }
+  }
+}
