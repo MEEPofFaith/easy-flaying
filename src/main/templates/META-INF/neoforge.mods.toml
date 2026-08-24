@@ -84,14 +84,14 @@ config="${mod_id}.mixins.json"
     modId="minecraft"
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="${minecraft_version_range}-[1.1,)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="easy_villagers"
     type="required"
-    versionRange="${minecraft_version_range}"
+    versionRange="${minecraft_version_range}-[1.1,)"
     ordering="AFTER"
     side="BOTH"
 
