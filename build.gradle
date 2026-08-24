@@ -84,8 +84,6 @@ repositories {
         url = "https://pool.net.eu.org/"
     }
 
-    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
-
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
     mavenCentral()
 }
@@ -206,7 +204,7 @@ dependencies {
     implementation("dev.architectury:architectury-neoforge:$architectury_api_version")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    // Easy Villagers. Uses modrinth maven
+    // Easy Villagers. They do not have their own maven; use Modrinth maven instead.
     implementation "maven.modrinth:Kaov2qgi:${easy_villagers_ID}"
 }
 
