@@ -3,7 +3,8 @@
   "package": "com.meepoffaith.easyflaying.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "OpBrainsweepMixin"
+    "OpBrainsweepMixin",
+    "VillagerEventsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

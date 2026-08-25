@@ -1,6 +1,5 @@
 package com.meepoffaith.easyflaying.mixin;
 
-import at.petrak.hexcasting.api.HexAPI;
 import at.petrak.hexcasting.api.casting.OperatorUtils;
 import at.petrak.hexcasting.api.casting.ParticleSpray;
 import at.petrak.hexcasting.api.casting.RenderedSpell;
@@ -16,7 +15,6 @@ import at.petrak.hexcasting.common.casting.actions.spells.great.OpBrainsweep;
 import at.petrak.hexcasting.common.recipe.BrainsweepRecipe;
 import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity;
-import com.meepoffaith.easyflaying.EasyFlaying;
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
@@ -24,7 +22,6 @@ import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,7 +40,7 @@ import java.util.List;
 // https://github.com/withgallantry/HexIntent/blob/main/src/main/java/com/bluup/manifestation/mixin/OpBrainsweepMixin.java
 // because this is my first time doing something like this.
 @Mixin(OpBrainsweep.class)
-abstract class OpBrainsweepMixin {
+abstract class OpBrainsweepMixin{
     @Shadow @Final private static int argc;
 
     @Inject(method = "execute", at = @At("HEAD"), cancellable = true, remap = false)
