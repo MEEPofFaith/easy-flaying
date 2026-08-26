@@ -18,8 +18,6 @@ import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity;
 import com.meepoffaith.easyflaying.casting.mishaps.MishapAlreadyBrainsweptTrader;
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
-import de.maxhenkel.easyvillagers.blocks.ModBlocks;
-import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase;
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity;
 import net.minecraft.core.BlockPos;

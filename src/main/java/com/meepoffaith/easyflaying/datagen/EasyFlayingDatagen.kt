@@ -6,7 +6,7 @@ import net.minecraft.data.PackOutput
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
 // https://github.com/MEEPofFaith/hextra-patterns-1.21/blob/main/src/neoforge/1.21.1/main/kotlin/com/meepoffaith/hextrapats/datagen/NeoForgeHextrapatsDatagen.kt
-object EasyFlayingDatagen{
+object EasyFlayingDatagen {
     fun init(event: GatherDataEvent) {
         event.apply {
             addVanillaProvider(includeServer()) { EasyFlayingActionTags(it, lookupProvider) }
