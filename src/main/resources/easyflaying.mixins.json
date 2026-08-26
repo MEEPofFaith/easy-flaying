@@ -5,7 +5,8 @@
   "mixins": [
     "VillagerDataAccessor",
     "OpBrainsweepMixin",
-    "VillagerDataMixin"
+    "VillagerDataMixin",
+    "VillagerItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -14,6 +14,9 @@
         "": "Easy Flaying Configs",
         title: "Easy Flaying Configs"
       }
+    },
+    tooltip: {
+      flain: "Flayed"
     }
   },
   hexcasting: {
