@@ -70,11 +70,11 @@ abstract class OpBrainsweepMixin{
         BlockEntity traderEntity = world.getBlockEntity(traderPos);
 
         if(!(traderEntity instanceof TraderTileentityBase traderBlock))
-            throw MishapBadBlock.of(traderPos, "easyflaying:trader");
+            throw MishapBadBlock.of(traderPos, "easyflaying:filled_trader");
 
         var sacrifice = traderBlock.getVillagerEntity();
         if(sacrifice == null)
-            throw MishapBadBlock.of(traderPos, "easyflaying:trader");
+            throw MishapBadBlock.of(traderPos, "easyflaying:filled_trader");
 
         // Flay mind expects an in-world mob, so I can't just convert to an entity iota and pass it in.
         // Manually re-implement with proper handling of the trader.

@@ -1,6 +1,10 @@
 package com.meepoffaith.easyflaying;
 
+import com.meepoffaith.easyflaying.datagen.EasyFlayingDatagen;
+import com.meepoffaith.easyflaying.init.EasyFlayingActions;
+import com.meepoffaith.easyflaying.init.EasyFlayingRegistrar;
 import com.mojang.logging.LogUtils;
+import kotlin.Unit;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
@@ -10,7 +14,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -34,6 +40,10 @@ public class EasyFlaying {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        initRegistry(modEventBus, EasyFlayingActions.INSTANCE);
+
+        modEventBus.addListener(event -> EasyFlayingDatagen.INSTANCE.init((GatherDataEvent)event));
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -54,5 +64,20 @@ public class EasyFlaying {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    public static String id(String id){
+        return MODID + ":" + id;
+    }
+
+    private <T> void initRegistry(IEventBus modEventBus, EasyFlayingRegistrar<T> registrar){
+        modEventBus.addListener(event -> {
+            ((RegisterEvent)event).register(registrar.getRegistryKey(), helper -> {
+                registrar.init((resourceLocation, t) -> {
+                    helper.register(resourceLocation, t);
+                    return Unit.INSTANCE; // Kotlinless moment
+                });
+            });
+        });
     }
 }
