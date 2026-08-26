@@ -36,14 +36,9 @@
           empty_trader: "an empty trader"
         }
       },
-      bad_item: {
+      invalid_value: {
         "easyflaying:": {
-          villager: "an itemized villager"
-        }
-      },
-      bad_entity: {
-        "easyflaying:": {
-          villager: "a living villager or itemized villager"
+          villager: "a living villager or an itemized villager"
         }
       }
     }

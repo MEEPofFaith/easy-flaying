@@ -5,16 +5,13 @@ import at.petrak.hexcasting.api.casting.RenderedSpell
 import at.petrak.hexcasting.api.casting.castables.SpellAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getBlockPos
-import at.petrak.hexcasting.api.casting.getEntity
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock
-import at.petrak.hexcasting.api.casting.mishaps.MishapBadEntity
-import at.petrak.hexcasting.api.casting.mishaps.MishapBadItem
 import at.petrak.hexcasting.api.misc.MediaConstants
+import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getVillager
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import de.maxhenkel.easyvillagers.items.ModItems
-import de.maxhenkel.easyvillagers.items.VillagerItem
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.npc.Villager
 import net.minecraft.world.item.ItemStack
@@ -27,29 +24,26 @@ object OpYoinkVillager : SpellAction{
         args: List<Iota>,
         env: CastingEnvironment
     ): SpellAction.Result{
-        val target = args.getEntity(env.world, 0)
+        val target = args.getVillager(env.world, 0)
         val trader = args.getBlockPos(1)
         val tile = env.world.getBlockEntity(trader)
 
         if(tile !is TraderTileentityBase || tile.hasVillager())
             throw MishapBadBlock.of(trader, "easyflaying:empty_trader")
 
-        if(target is Villager && target.isAlive){
-            return SpellAction.Result(
-                SpellVillager(target, tile),
+        return target.map({ item ->
+            SpellAction.Result(
+                SpellStack(item, tile),
                 COST,
-                listOf(ParticleSpray.cloud(target.eyePosition, 1.0), ParticleSpray.burst(trader.center, 1.0))
+                listOf(ParticleSpray.cloud(item.eyePosition, 0.75), ParticleSpray.burst(trader.center, 1.0, 40))
             )
-        }else if(target is ItemEntity){
-            if(target.item.item !is VillagerItem)
-                throw MishapBadItem.of(target, "easyflaying:villager")
-            return SpellAction.Result(
-                SpellStack(target, tile),
+        }, { villager ->
+            SpellAction.Result(
+                SpellVillager(villager, tile),
                 COST,
-                listOf(ParticleSpray.cloud(target.eyePosition, 0.5), ParticleSpray.burst(trader.center, 1.0))
+                listOf(ParticleSpray.cloud(villager.eyePosition, 1.0), ParticleSpray.burst(trader.center, 1.0, 40))
             )
-        }
-        throw MishapBadEntity.of(target, "easyflaying:villager")
+        })
     }
 
     private data class SpellVillager(val target: Villager, val trader: TraderTileentityBase) : RenderedSpell {
