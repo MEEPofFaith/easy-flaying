@@ -1,9 +1,8 @@
 package com.meepoffaith.easyflaying.mixin;
 
-import de.maxhenkel.easyvillagers.datacomponents.VillagerData;
+import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
 import de.maxhenkel.easyvillagers.items.VillagerItem;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,15 +24,7 @@ abstract class VillagerItemMixin{
             TooltipFlag flagIn,
             CallbackInfo ci
     ){
-        VillagerData data = VillagerData.get(stack);
-        if(data == null) return;
-
-        CompoundTag nbt = ((VillagerDataAccessor)data).easyflaying$getnbt();
-        if(nbt.contains("NeoForgeData")){
-            CompoundTag persistent = nbt.getCompound("NeoForgeData");
-            if(persistent.contains("hexcasting:brainswept")){
-                tooltip.add(Component.translatable("easyflaying.tooltip.flain").withStyle(ChatFormatting.DARK_PURPLE));
-            }
-        }
+        if(EasyFlayingUtil.INSTANCE.isBrainswept(stack))
+            tooltip.add(Component.translatable("easyflaying.tooltip.flain").withStyle(ChatFormatting.DARK_PURPLE));
     }
 }
