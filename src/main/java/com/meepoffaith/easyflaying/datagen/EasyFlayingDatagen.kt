@@ -1,6 +1,7 @@
 package com.meepoffaith.easyflaying.datagen
 
 import at.petrak.hexcasting.forge.datagen.TagsProviderEFHSetter
+import com.meepoffaith.easyflaying.EasyFlaying
 import net.minecraft.data.DataProvider
 import net.minecraft.data.PackOutput
 import net.neoforged.neoforge.data.event.GatherDataEvent
@@ -8,6 +9,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent
 // https://github.com/MEEPofFaith/hextra-patterns-1.21/blob/main/src/neoforge/1.21.1/main/kotlin/com/meepoffaith/hextrapats/datagen/NeoForgeHextrapatsDatagen.kt
 object EasyFlayingDatagen {
     fun init(event: GatherDataEvent) {
+        EasyFlaying.LOGGER.info("Running datagen")
         event.apply {
             addVanillaProvider(includeServer()) { EasyFlayingActionTags(it, lookupProvider) }
         }
