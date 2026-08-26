@@ -12,7 +12,7 @@ object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
     HexRegistries.ACTION,
     { HexActions.REGISTRY }
 ) {
-    val YOINK_VILLAGER = make("yoink_villager", HexDir.NORTH_WEST, "eqeqwdewwewwewwewwewwewdqweqdeqewdewqawqded", OpYoinkVillager)
+    val YOINK_VILLAGER = make("yoink_villager", HexDir.NORTH_WEST, "eqeqwdewwewwewwewwewwewdqweqdeqewdewqaweaqa", OpYoinkVillager)
 
     private fun make(name: String, startDir: HexDir, signature: String, action: Action) =
         make(name, startDir, signature) { action }

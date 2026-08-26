@@ -16,6 +16,7 @@ class EasyFlayingActionTags(
     provider: CompletableFuture<HolderLookup.Provider>,
 ) : TagsProvider<ActionRegistryEntry>(output, HexRegistries.ACTION, provider, EasyFlaying.MODID, null) {
     override fun addTags(provider: HolderLookup.Provider) {
+        /*
         for (entry in arrayOf(
             EasyFlayingActions.YOINK_VILLAGER
         )){
@@ -23,5 +24,6 @@ class EasyFlayingActionTags(
             tag(HexTags.Actions.PER_WORLD_PATTERN).add(entry.key)
             tag(HexTags.Actions.REQUIRES_ENLIGHTENMENT).add(entry.key)
         }
+         */
     }
 }
