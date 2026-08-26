@@ -7,12 +7,12 @@ import at.petrak.hexcasting.api.casting.mishaps.Mishap
 import at.petrak.hexcasting.api.pigment.FrozenPigment
 import at.petrak.hexcasting.api.utils.TreeList
 import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity
-import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity
+import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.entity.Mob
 import net.minecraft.world.item.DyeColor
 
-class MishapAlreadyBrainsweptTrader(val trader: TraderTileentity, val mob: Mob) : Mishap() {
+class MishapAlreadyBrainsweptTrader(val trader: TraderTileentityBase, val mob: Mob) : Mishap() {
     override fun accentColor(env: CastingEnvironment, errorCtx: Context): FrozenPigment =
         dyeColor(DyeColor.GREEN)
 

@@ -2,13 +2,13 @@ package com.meepoffaith.easyflaying.util
 
 import at.petrak.hexcasting.api.HexAPI
 import com.meepoffaith.easyflaying.mixin.VillagerDataAccessor
-import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity
+import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity
 import net.minecraft.world.item.ItemStack
 
 object EasyFlayingUtil{
-    fun brainsweep(trader: TraderTileentity, sacrifice: EasyVillagerEntity){
+    fun brainsweep(trader: TraderTileentityBase, sacrifice: EasyVillagerEntity){
         HexAPI.instance().brainsweep(sacrifice)
         VillagerData.applyToItem(trader.villager, sacrifice)
 

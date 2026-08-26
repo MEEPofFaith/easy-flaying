@@ -20,6 +20,7 @@ import com.meepoffaith.easyflaying.casting.mishaps.MishapAlreadyBrainsweptTrader
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
+import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase;
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -66,10 +67,9 @@ abstract class OpBrainsweepMixin{
 
         var world = env.getWorld();
 
-        BlockState trader = world.getBlockState(traderPos);
         BlockEntity traderEntity = world.getBlockEntity(traderPos);
 
-        if(trader.getBlock() != ModBlocks.TRADER.get() || !(traderEntity instanceof TraderTileentity traderBlock))
+        if(!(traderEntity instanceof TraderTileentityBase traderBlock))
             throw MishapBadBlock.of(traderPos, "easyflaying:trader");
 
         var sacrifice = traderBlock.getVillagerEntity();
@@ -111,7 +111,7 @@ abstract class OpBrainsweepMixin{
     private record Spell(
             BlockPos pos,
             BlockState state,
-            TraderTileentity trader,
+            TraderTileentityBase trader,
             EasyVillagerEntity sacrifice,
             BrainsweepRecipe recipe
     ) implements RenderedSpell{
