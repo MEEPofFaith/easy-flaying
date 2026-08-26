@@ -76,7 +76,8 @@ abstract class OpBrainsweepMixin{
         if(sacrifice == null)
             throw MishapBadBlock.of(traderPos, "easyflaying:trader");
 
-        // Flay mind expects a mob, so I can't just convert to an entity iota and pass it in. Manually re-implement.
+        // Flay mind expects an in-world mob, so I can't just convert to an entity iota and pass it in.
+        // Manually re-implement with proper handling of the trader.
         if(sacrifice.getType().is(HexTags.Entities.NO_BRAINSWEEPING))
             throw new MishapBadBrainsweep(sacrifice, targetPos);
 
@@ -106,7 +107,7 @@ abstract class OpBrainsweepMixin{
         cir.setReturnValue(result);
     }
 
-    // Re-implement the flaying spell to handle a villager entity instead of mob
+    // Re-implement the flaying spell to handle a villager inside a trader
     private record Spell(
             BlockPos pos,
             BlockState state,
