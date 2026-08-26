@@ -1,10 +1,11 @@
 {
-  "name": "easyflaying.entry.interop.easyflaying",
-  "icon": "easy_villagers:trader",
+  "name": "easyflaying.entry.interop.traderflay",
+  "icon": "easy_villagers:auto_trader",
   "category": "hexcasting:interop",
   "advancement": "hexcasting:enlightenment",
   "entry_color": "54398a",
   "flag": "mod:easyflaying",
+  "sortnum": 3,
   "pages": [
     {
       "type": "hexcasting:pattern",
@@ -12,7 +13,7 @@
       "anchor": "hexcasting:brainsweep",
       "input": "vector, vector",
       "output": "",
-      "text": "easyflaying.page.tradersweep"
+      "text": "easyflaying.page.traderflay.tradersweep"
     }
   ]
 }
