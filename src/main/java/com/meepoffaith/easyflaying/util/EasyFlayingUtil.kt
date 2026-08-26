@@ -1,7 +1,6 @@
 package com.meepoffaith.easyflaying.util
 
 import at.petrak.hexcasting.api.HexAPI
-import com.meepoffaith.easyflaying.EasyFlaying
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity
