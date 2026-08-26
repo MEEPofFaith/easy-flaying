@@ -113,7 +113,7 @@ abstract class OpBrainsweepMixin{
         public void cast(@NotNull CastingEnvironment env) {
             env.getWorld().setBlockAndUpdate(pos, BrainsweepRecipe.copyProperties(state, recipe.result()));
 
-            EasyFlayingUtil.INSTANCE.brainsweep(trader);
+            EasyFlayingUtil.INSTANCE.brainsweep(trader, sacrifice);
 
             var sound = ((AccessorLivingEntity)sacrifice).hex$getDeathSound();
             if(sound != null)
