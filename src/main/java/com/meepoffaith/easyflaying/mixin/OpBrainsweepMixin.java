@@ -1,5 +1,6 @@
 package com.meepoffaith.easyflaying.mixin;
 
+import at.petrak.hexcasting.api.HexAPI;
 import at.petrak.hexcasting.api.casting.OperatorUtils;
 import at.petrak.hexcasting.api.casting.ParticleSpray;
 import at.petrak.hexcasting.api.casting.RenderedSpell;
@@ -7,6 +8,7 @@ import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.Vec3Iota;
+import at.petrak.hexcasting.api.casting.mishaps.MishapAlreadyBrainswept;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBrainsweep;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadLocation;
@@ -77,6 +79,9 @@ abstract class OpBrainsweepMixin{
         // Flay mind expects a mob, so I can't just convert to an entity iota and pass it in. Manually re-implement.
         if(sacrifice.getType().is(HexTags.Entities.NO_BRAINSWEEPING))
             throw new MishapBadBrainsweep(sacrifice, targetPos);
+
+        if(HexAPI.instance().isBrainswept(sacrifice))
+            throw new MishapAlreadyBrainswept(sacrifice);
 
         var state = env.getWorld().getBlockState(targetPos);
 
