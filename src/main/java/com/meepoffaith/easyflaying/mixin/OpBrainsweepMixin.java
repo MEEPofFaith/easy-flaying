@@ -8,7 +8,6 @@ import at.petrak.hexcasting.api.casting.castables.SpellAction;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.Vec3Iota;
-import at.petrak.hexcasting.api.casting.mishaps.MishapAlreadyBrainswept;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBrainsweep;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadLocation;
@@ -17,6 +16,7 @@ import at.petrak.hexcasting.common.casting.actions.spells.great.OpBrainsweep;
 import at.petrak.hexcasting.common.recipe.BrainsweepRecipe;
 import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import at.petrak.hexcasting.mixin.accessor.AccessorLivingEntity;
+import com.meepoffaith.easyflaying.casting.mishaps.MishapAlreadyBrainsweptTrader;
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil;
 import de.maxhenkel.easyvillagers.blocks.ModBlocks;
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentity;
@@ -81,7 +81,7 @@ abstract class OpBrainsweepMixin{
             throw new MishapBadBrainsweep(sacrifice, targetPos);
 
         if(HexAPI.instance().isBrainswept(sacrifice))
-            throw new MishapAlreadyBrainswept(sacrifice);
+            throw new MishapAlreadyBrainsweptTrader(traderBlock, sacrifice);
 
         var state = env.getWorld().getBlockState(targetPos);
 
