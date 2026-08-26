@@ -17,6 +17,12 @@
     }
   },
   hexcasting: {
+    action: {
+      "easyflaying:": {
+        yoink_villager: "Entrap Villager",
+        expel_villager: "Expel Villager"
+      }
+    },
     mishap: {
       bad_block: {
         "easyflaying:": {
