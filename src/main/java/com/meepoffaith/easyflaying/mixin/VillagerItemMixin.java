@@ -25,6 +25,6 @@ abstract class VillagerItemMixin{
             CallbackInfo ci
     ){
         if(EasyFlayingUtil.INSTANCE.isBrainswept(stack))
-            tooltip.add(Component.translatable("easyflaying.tooltip.flain").withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(Component.translatable("hexcasting.mishap.already_brainswept").withStyle(ChatFormatting.DARK_PURPLE));
     }
 }
