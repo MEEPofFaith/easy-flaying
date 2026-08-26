@@ -1,5 +1,6 @@
 package com.meepoffaith.easyflaying;
 
+import at.petrak.hexcasting.interop.HexInterop;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -9,6 +10,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import vazkii.patchouli.api.PatchouliAPI;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = EasyFlaying.MODID, dist = Dist.CLIENT)
@@ -27,5 +29,7 @@ public class EasyFlayingClient {
         // Some client setup code
         EasyFlaying.LOGGER.info("HELLO FROM CLIENT SETUP");
         EasyFlaying.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+        PatchouliAPI.get().setConfigFlag(HexInterop.PATCHOULI_ANY_INTEROP_FLAG, true);
     }
 }

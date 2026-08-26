@@ -1,5 +1,13 @@
 {
   easyflaying: {
+    entry: {
+      interop: {
+        easyflaying: "Flaying Traders"
+      }
+    },
+    page: {
+      tradersweep: "$(l:patterns/great_spells/brainsweep)$(action)Flay mind/$ can now accept the position of a trader as the sacrifice."
+    },
     configuration: {
       title: "Easy Flaying Configs",
       "section.easyflaying.common.toml": {
