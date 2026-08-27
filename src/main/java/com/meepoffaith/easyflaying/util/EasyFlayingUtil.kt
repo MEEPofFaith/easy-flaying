@@ -39,16 +39,11 @@ object EasyFlayingUtil{
         val datum = this.getOrElse(idx) { throw MishapNotEnoughArgs(idx + 1, this.size) }
         if(datum is EntityIota) {
             val entity = datum.getEntity(level)
-            return when(entity) {
+            when(entity){
                 is ItemEntity if entity.item.item is VillagerItem ->
-                    Either.left(entity)
+                    return Either.left(entity)
                 is Villager if entity.isAlive ->
-                    Either.right(entity)
-                else -> throw MishapInvalidIota.of(
-                    datum,
-                    if (argc == 0) idx else argc - (idx + 1),
-                    "easyflaying:villager"
-                )
+                    return Either.right(entity)
             }
         }
         throw MishapInvalidIota.of(

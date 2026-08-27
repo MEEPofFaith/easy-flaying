@@ -8,8 +8,16 @@
   "pages": [
     {
       "type": "hexcasting:pattern",
-      "op_id": "easyflaying:yoink_villager",
-      "anchor": "easyflaying:yoink_villager",
+      "op_id": "easyflaying:villager/itemize",
+      "anchor": "easyflaying:villager/itemize",
+      "input": "entity",
+      "output": "",
+      "text": "easyflaying.page.tradermanip.itemize"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/yoink",
+      "anchor": "easyflaying:villager/yoink",
       "input": "entity, vector",
       "output": "",
       "text": "easyflaying.page.tradermanip.yoink"

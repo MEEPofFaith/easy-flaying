@@ -8,6 +8,7 @@
     },
     page: {
       tradermanip: {
+        itemize: "Transforms a villager into a villager item, or a villager item back into a villager.",
         yoink: "Inserts a villager or itemized villager into a trader."
       },
       traderflay: {
@@ -25,8 +26,11 @@
   hexcasting: {
     action: {
       "easyflaying:": {
-        yoink_villager: "Entrap Villager",
-        expel_villager: "Expel Villager"
+        "villager/": {
+          itemize: "insert name here",
+          yoink: "Entrap Villager",
+          expel: "Expel Villager"
+        },
       }
     },
     mishap: {

@@ -46,18 +46,18 @@ object OpYoinkVillager : SpellAction{
         })
     }
 
+    private data class SpellStack(val target: ItemEntity, val trader: TraderTileentityBase) : RenderedSpell {
+        override fun cast(env: CastingEnvironment) {
+            trader.villager = target.item
+            target.discard()
+        }
+    }
+
     private data class SpellVillager(val target: Villager, val trader: TraderTileentityBase) : RenderedSpell {
         override fun cast(env: CastingEnvironment){
             val stack = ItemStack(ModItems.VILLAGER.get())
             VillagerData.applyToItem(stack, target)
             trader.villager = stack
-            target.discard()
-        }
-    }
-
-    private data class SpellStack(val target: ItemEntity, val trader: TraderTileentityBase) : RenderedSpell {
-        override fun cast(env: CastingEnvironment) {
-            trader.villager = target.item
             target.discard()
         }
     }
