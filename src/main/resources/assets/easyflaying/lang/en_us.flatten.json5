@@ -25,6 +25,9 @@
         "": "Easy Flaying Configs",
         title: "Easy Flaying Configs"
       }
+    },
+    info: {
+      brainswept: "Villager cannot work without a mind"
     }
   },
   hexcasting: {

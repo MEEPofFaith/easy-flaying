@@ -6,7 +6,10 @@
     "VillagerDataAccessor",
     "OpBrainsweepMixin",
     "VillagerDataMixin",
-    "VillagerItemMixin"
+    "VillagerItemMixin",
+    "BreederBlockMixin",
+    "FarmerBlockMixin",
+    "IronFarmMixin"
   ],
   "injectors": {
     "defaultRequire": 1

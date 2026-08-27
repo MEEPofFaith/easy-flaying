@@ -30,8 +30,8 @@ object EasyFlayingUtil{
          */
     }
 
-    fun isBrainswept(stack: ItemStack): Boolean{
-        val data = VillagerData.get(stack) ?: return false
+    fun ItemStack.isBrainswept(): Boolean{
+        val data = VillagerData.get(this) ?: return false
 
         val nbt = (data as VillagerDataAccessor).`easyflaying$getnbt`()
         return nbt.getCompound("NeoForgeData").getBoolean("hexcasting:brainswept")
