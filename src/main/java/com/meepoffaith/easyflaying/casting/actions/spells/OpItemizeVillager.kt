@@ -20,29 +20,19 @@ object OpItemizeVillager : SpellAction{
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val target = args.getVillager(env.world, 0)
 
-        return target.map({ item ->
-            SpellAction.Result(
-                SpellItem(item),
-                COST,
-                listOf(ParticleSpray.burst(item.position(), 2.0))
-            )
-        }, { villager ->
+        return target.map({ villager ->
             SpellAction.Result(
                 SpellVillager(villager),
                 COST,
                 listOf(ParticleSpray.burst(villager.position(), 1.0))
             )
+        }, { item ->
+            SpellAction.Result(
+                SpellItem(item),
+                COST,
+                listOf(ParticleSpray.burst(item.position(), 2.0))
+            )
         })
-    }
-
-    private data class SpellItem(val target: ItemEntity) : RenderedSpell{
-        override fun cast(env: CastingEnvironment) {
-            val villager = VillagerData.getOrCreate(target.item).createEasyVillager(env.world, target.item)
-            villager.setPos(target.position())
-            if(env.world.addFreshEntity(villager)){
-                target.discard()
-            }
-        }
     }
 
     private data class SpellVillager(val target: Villager) : RenderedSpell{
@@ -52,6 +42,16 @@ object OpItemizeVillager : SpellAction{
             val pos = target.position()
             val item = ItemEntity(env.world, pos.x, pos.y, pos.z, stack)
             if(env.world.addFreshEntity(item)) {
+                target.discard()
+            }
+        }
+    }
+
+    private data class SpellItem(val target: ItemEntity) : RenderedSpell{
+        override fun cast(env: CastingEnvironment) {
+            val villager = VillagerData.getOrCreate(target.item).createEasyVillager(env.world, target.item)
+            villager.setPos(target.position())
+            if(env.world.addFreshEntity(villager)){
                 target.discard()
             }
         }

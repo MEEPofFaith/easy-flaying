@@ -31,26 +31,19 @@ object OpYoinkVillager : SpellAction{
         if(tile !is TraderTileentityBase || tile.hasVillager())
             throw MishapBadBlock.of(trader, "easyflaying:empty_trader")
 
-        return target.map({ item ->
-            SpellAction.Result(
-                SpellStack(item, tile),
-                COST,
-                listOf(ParticleSpray.cloud(item.eyePosition, 0.75), ParticleSpray.burst(trader.center, 1.0, 40))
-            )
-        }, { villager ->
+        return target.map({ villager ->
             SpellAction.Result(
                 SpellVillager(villager, tile),
                 COST,
                 listOf(ParticleSpray.cloud(villager.eyePosition, 1.0), ParticleSpray.burst(trader.center, 1.0, 40))
             )
+        }, { item ->
+            SpellAction.Result(
+                SpellStack(item, tile),
+                COST,
+                listOf(ParticleSpray.cloud(item.eyePosition, 0.75), ParticleSpray.burst(trader.center, 1.0, 40))
+            )
         })
-    }
-
-    private data class SpellStack(val target: ItemEntity, val trader: TraderTileentityBase) : RenderedSpell {
-        override fun cast(env: CastingEnvironment) {
-            trader.villager = target.item
-            target.discard()
-        }
     }
 
     private data class SpellVillager(val target: Villager, val trader: TraderTileentityBase) : RenderedSpell {
@@ -58,6 +51,13 @@ object OpYoinkVillager : SpellAction{
             val stack = ItemStack(ModItems.VILLAGER.get())
             VillagerData.applyToItem(stack, target)
             trader.villager = stack
+            target.discard()
+        }
+    }
+
+    private data class SpellStack(val target: ItemEntity, val trader: TraderTileentityBase) : RenderedSpell {
+        override fun cast(env: CastingEnvironment) {
+            trader.villager = target.item
             target.discard()
         }
     }

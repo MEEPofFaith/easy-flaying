@@ -29,7 +29,10 @@
         "villager/": {
           itemize: "insert name here",
           yoink: "Entrap Villager",
-          expel: "Expel Villager"
+          "expel/": {
+            villager: "Expel Villager",
+            item: "Expel Villager II"
+          }
         },
       }
     },

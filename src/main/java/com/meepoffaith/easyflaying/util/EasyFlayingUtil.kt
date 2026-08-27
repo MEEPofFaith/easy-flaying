@@ -35,14 +35,14 @@ object EasyFlayingUtil{
         return nbt.getCompound("NeoForgeData").getBoolean("hexcasting:brainswept")
     }
 
-    fun List<Iota>.getVillager(level: ServerLevel, idx: Int, argc: Int = 0): Either<ItemEntity, Villager> {
+    fun List<Iota>.getVillager(level: ServerLevel, idx: Int, argc: Int = 0): Either<Villager, ItemEntity> {
         val datum = this.getOrElse(idx) { throw MishapNotEnoughArgs(idx + 1, this.size) }
         if(datum is EntityIota) {
             val entity = datum.getEntity(level)
             when(entity){
-                is ItemEntity if entity.item.item is VillagerItem ->
-                    return Either.left(entity)
                 is Villager if entity.isAlive ->
+                    return Either.left(entity)
+                is ItemEntity if entity.item.item is VillagerItem ->
                     return Either.right(entity)
             }
         }
