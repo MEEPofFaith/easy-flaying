@@ -1,8 +1,10 @@
 package com.meepoffaith.easyflaying.util
 
 import at.petrak.hexcasting.api.HexAPI
+import at.petrak.hexcasting.api.casting.getBlockPos
 import at.petrak.hexcasting.api.casting.iota.EntityIota
 import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import com.meepoffaith.easyflaying.mixin.VillagerDataAccessor
@@ -33,6 +35,14 @@ object EasyFlayingUtil{
 
         val nbt = (data as VillagerDataAccessor).`easyflaying$getnbt`()
         return nbt.getCompound("NeoForgeData").getBoolean("hexcasting:brainswept")
+    }
+
+    fun List<Iota>.getTrader(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): TraderTileentityBase {
+        val pos = this.getBlockPos(idx, argc)
+        val trader = level.getBlockEntity(pos)
+        if(trader !is TraderTileentityBase || trader.hasVillager() != isFull)
+            throw MishapBadBlock.of(pos, "easyflaying:" + (if (isFull) "filled" else "empty") + "_trader")
+        return trader
     }
 
     fun List<Iota>.getVillager(level: ServerLevel, idx: Int, argc: Int = 0): Either<Villager, ItemEntity> {
