@@ -1,10 +1,8 @@
 package com.meepoffaith.easyflaying.datagen
 
 import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.mod.HexTags
 import at.petrak.hexcasting.common.lib.HexRegistries
 import com.meepoffaith.easyflaying.EasyFlaying
-import com.meepoffaith.easyflaying.init.EasyFlayingActions
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.data.tags.TagsProvider
