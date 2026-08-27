@@ -22,12 +22,6 @@ object EasyFlayingUtil{
     fun brainsweep(trader: TraderTileentityBase, sacrifice: EasyVillagerEntity){
         HexAPI.instance().brainsweep(sacrifice)
         VillagerData.applyToItem(trader.villager, sacrifice)
-
-        /*
-            TODO: Do I need to add networking stuff?
-                  I'm not experienced enough to know when I do and don't need it.
-                  I see it in base hex brainsweep code, at least.
-         */
     }
 
     fun ItemStack.isBrainswept(): Boolean{
