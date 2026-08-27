@@ -8,8 +8,12 @@
     },
     page: {
       tradermanip: {
-        itemize: "Transforms a villager into a villager item, or a villager item back into a villager.",
-        yoink: "Inserts a villager or itemized villager into a trader."
+        itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+        yoink: "Inserts a villager or itemized villager into a trader. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+        "expel/": {
+          villager: "Removes the villager from a trader, and returns it to the world as a live villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+          item: "Removes the villager from a trader, and returns it to the world as an item. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$."
+        }
       },
       traderflay: {
         tradersweep: "$(l:patterns/great_spells/brainsweep)$(action)Flay mind/$ can now accept the position of a trader as the sacrifice."

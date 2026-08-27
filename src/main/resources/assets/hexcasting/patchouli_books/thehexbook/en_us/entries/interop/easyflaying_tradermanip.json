@@ -21,6 +21,22 @@
       "input": "entity, vector",
       "output": "",
       "text": "easyflaying.page.tradermanip.yoink"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/expel/villager",
+      "anchor": "easyflaying:villager/expel/villager",
+      "input": "vector, vector",
+      "output": "",
+      "text": "easyflaying.page.tradermanip.expel/villager"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/expel/item",
+      "anchor": "easyflaying:villager/expel/item",
+      "input": "vector, vector",
+      "output": "",
+      "text": "easyflaying.page.tradermanip.expel/item"
     }
   ]
 }

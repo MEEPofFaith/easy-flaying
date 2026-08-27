@@ -25,23 +25,23 @@ object OpYoinkVillager : SpellAction{
         env: CastingEnvironment
     ): SpellAction.Result{
         val target = args.getVillager(env.world, 0)
-        val trader = args.getBlockPos(1)
-        val tile = env.world.getBlockEntity(trader)
+        val traderPos = args.getBlockPos(1)
+        val trader = env.world.getBlockEntity(traderPos)
 
-        if(tile !is TraderTileentityBase || tile.hasVillager())
-            throw MishapBadBlock.of(trader, "easyflaying:empty_trader")
+        if(trader !is TraderTileentityBase || trader.hasVillager())
+            throw MishapBadBlock.of(traderPos, "easyflaying:empty_trader")
 
         return target.map({ villager ->
             SpellAction.Result(
-                SpellVillager(villager, tile),
+                SpellVillager(villager, trader),
                 COST,
-                listOf(ParticleSpray.cloud(villager.eyePosition, 1.0), ParticleSpray.burst(trader.center, 1.0, 40))
+                listOf(ParticleSpray.cloud(villager.eyePosition, 1.0), ParticleSpray.burst(traderPos.center, 1.0, 40))
             )
         }, { item ->
             SpellAction.Result(
-                SpellStack(item, tile),
+                SpellStack(item, trader),
                 COST,
-                listOf(ParticleSpray.cloud(item.eyePosition, 0.75), ParticleSpray.burst(trader.center, 1.0, 40))
+                listOf(ParticleSpray.cloud(item.eyePosition, 0.75), ParticleSpray.burst(traderPos.center, 1.0, 40))
             )
         })
     }
