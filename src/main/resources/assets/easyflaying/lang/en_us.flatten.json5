@@ -31,7 +31,7 @@
     action: {
       "easyflaying:": {
         "villager/": {
-          itemize: "insert name here",
+          itemize: "Itemize Villager",
           yoink: "Entrap Villager",
           "expel/": {
             villager: "Expel Villager",
