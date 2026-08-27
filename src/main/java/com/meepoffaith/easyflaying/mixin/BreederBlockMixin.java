@@ -21,27 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BreederBlock.class)
 abstract class BreederBlockMixin{
-    @Inject(method = "useItemOn", at = @At(value = "INVOKE", target = "Lde/maxhenkel/easyvillagers/blocks/tileentity/BreederTileentity;setVillager1(Lnet/minecraft/world/item/ItemStack;)V"), cancellable = true, remap = false)
-    protected void easyflaying$useItemOn1(
-            ItemStack heldItem,
-            BlockState state,
-            Level worldIn,
-            BlockPos pos,
-            Player player,
-            InteractionHand handIn,
-            BlockHitResult hit,
-            CallbackInfoReturnable<ItemInteractionResult> cir
-    ){
-        if(EasyFlayingUtil.INSTANCE.isBrainswept(heldItem)){
-            VillagerBlockBase.playVillagerSound(worldIn, pos, SoundEvents.VILLAGER_HURT);
-            player.displayClientMessage(Component.translatable("easyflaying.info.brainswept").withStyle(ChatFormatting.DARK_PURPLE), true);
-            cir.setReturnValue(ItemInteractionResult.CONSUME);
-        }
-    }
-
-    // Surely there's a way to mixin at two invoke points within the same method.
-    @Inject(method = "useItemOn", at = @At(value = "INVOKE", target = "Lde/maxhenkel/easyvillagers/blocks/tileentity/BreederTileentity;setVillager2(Lnet/minecraft/world/item/ItemStack;)V"), cancellable = true, remap = false)
-    protected void easyflaying$useItemOn2(
+    @Inject(method = "useItemOn", at = {@At(value = "INVOKE", target = "Lde/maxhenkel/easyvillagers/blocks/tileentity/BreederTileentity;setVillager1(Lnet/minecraft/world/item/ItemStack;)V"), @At(value = "INVOKE", target = "Lde/maxhenkel/easyvillagers/blocks/tileentity/BreederTileentity;setVillager2(Lnet/minecraft/world/item/ItemStack;)V")}, cancellable = true, remap = false)
+    protected void easyflaying$useItemOn(
             ItemStack heldItem,
             BlockState state,
             Level worldIn,
