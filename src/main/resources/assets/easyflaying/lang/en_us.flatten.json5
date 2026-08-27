@@ -42,7 +42,7 @@
       },
       invalid_value: {
         "easyflaying:": {
-          villager: "a living villager or an itemized villager"
+          villager: "a living or itemized villager"
         }
       }
     }
