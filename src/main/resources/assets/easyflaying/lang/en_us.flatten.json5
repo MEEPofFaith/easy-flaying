@@ -38,7 +38,7 @@
           yoink: "Entrap Villager",
           "expel/": {
             villager: "Expel Villager",
-            item: "Expel Villager II"
+            item: "Eject Villager"
           }
         },
       }
