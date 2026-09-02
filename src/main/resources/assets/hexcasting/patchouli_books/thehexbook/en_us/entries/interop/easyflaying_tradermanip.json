@@ -8,11 +8,43 @@
   "pages": [
     {
       "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/has",
+      "anchor": "easyflaying:trader/has",
+      "input": "vec",
+      "output": "bool",
+      "text": "easyflaying.page.tradermanip.trader/has"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/index.amount",
+      "anchor": "easyflaying:trader/index.amount",
+      "input": "vec",
+      "output": "int",
+      "text": "easyflaying.page.tradermanip.trader/index.amount"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/index.get",
+      "anchor": "easyflaying:trader/index.get",
+      "input": "vec",
+      "output": "int",
+      "text": "easyflaying.page.tradermanip.trader/index.get"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/remaining",
+      "anchor": "easyflaying:trader/remaining",
+      "input": "vec, int",
+      "output": "int",
+      "text": "easyflaying.page.tradermanip.trader/remaining"
+    },
+    {
+      "type": "hexcasting:pattern",
       "op_id": "easyflaying:villager/itemize",
       "anchor": "easyflaying:villager/itemize",
       "input": "entity",
       "output": "",
-      "text": "easyflaying.page.tradermanip.itemize"
+      "text": "easyflaying.page.tradermanip.villager/itemize"
     },
     {
       "type": "hexcasting:pattern",
@@ -20,7 +52,7 @@
       "anchor": "easyflaying:villager/yoink",
       "input": "entity, vector",
       "output": "",
-      "text": "easyflaying.page.tradermanip.yoink"
+      "text": "easyflaying.page.tradermanip.villager/yoink"
     },
     {
       "type": "hexcasting:pattern",
@@ -28,7 +60,7 @@
       "anchor": "easyflaying:villager/expel/villager",
       "input": "vector, vector",
       "output": "",
-      "text": "easyflaying.page.tradermanip.expel/villager"
+      "text": "easyflaying.page.tradermanip.villager/expel/villager"
     },
     {
       "type": "hexcasting:pattern",
@@ -36,7 +68,7 @@
       "anchor": "easyflaying:villager/expel/item",
       "input": "vector, vector",
       "output": "",
-      "text": "easyflaying.page.tradermanip.expel/item"
+      "text": "easyflaying.page.tradermanip.villager/expel/item"
     }
   ]
 }

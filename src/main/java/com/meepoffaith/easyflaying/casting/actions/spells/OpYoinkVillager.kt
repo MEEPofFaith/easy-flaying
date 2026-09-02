@@ -6,7 +6,7 @@ import at.petrak.hexcasting.api.casting.castables.SpellAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
-import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getTrader
+import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTraderWithVillager
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getVillager
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
@@ -24,7 +24,7 @@ object OpYoinkVillager : SpellAction{
         env: CastingEnvironment
     ): SpellAction.Result{
         val target = args.getVillager(env.world, 0)
-        val trader = args.getTrader(env.world, false, 1)
+        val trader = args.getAnyTraderWithVillager(env.world, false, 1)
 
         return target.map({ villager ->
             SpellAction.Result(

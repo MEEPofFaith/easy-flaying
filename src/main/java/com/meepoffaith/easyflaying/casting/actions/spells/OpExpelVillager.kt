@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getVec3
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
-import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getTrader
+import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTraderWithVillager
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import net.minecraft.world.entity.Entity
@@ -19,7 +19,7 @@ class OpExpelVillager(val toItem: Boolean) : SpellAction{
     override val argc = 2
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val trader = args.getTrader(env.world, true, 0)
+        val trader = args.getAnyTraderWithVillager(env.world, true, 0)
         val target = args.getVec3(1)
 
         return SpellAction.Result(

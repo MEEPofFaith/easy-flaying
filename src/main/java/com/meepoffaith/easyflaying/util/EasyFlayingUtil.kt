@@ -9,6 +9,7 @@ import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import com.meepoffaith.easyflaying.mixin.VillagerDataAccessor
 import com.mojang.datafixers.util.Either
+import de.maxhenkel.easyvillagers.blocks.tileentity.AutoTraderTileentity
 import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity
@@ -31,11 +32,35 @@ object EasyFlayingUtil{
         return nbt.getCompound("NeoForgeData").getBoolean("hexcasting:brainswept")
     }
 
-    fun List<Iota>.getTrader(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): TraderTileentityBase {
+    fun List<Iota>.getAnyTrader(level: ServerLevel, idx: Int, argc: Int = 0): TraderTileentityBase {
+        val pos = this.getBlockPos(idx, argc)
+        val trader = level.getBlockEntity(pos)
+        if(trader !is TraderTileentityBase)
+            throw MishapBadBlock.of(pos, "easyflaying:trader.any")
+        return trader
+    }
+
+    fun List<Iota>.getAnyTraderWithVillager(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): TraderTileentityBase {
         val pos = this.getBlockPos(idx, argc)
         val trader = level.getBlockEntity(pos)
         if(trader !is TraderTileentityBase || trader.hasVillager() != isFull)
-            throw MishapBadBlock.of(pos, "easyflaying:" + (if (isFull) "filled" else "empty") + "_trader")
+            throw MishapBadBlock.of(pos, "easyflaying:trader.any." + (if (isFull) "filled" else "empty"))
+        return trader
+    }
+
+    fun List<Iota>.getAutoTrader(level: ServerLevel, idx: Int, argc: Int = 0): AutoTraderTileentity {
+        val pos = this.getBlockPos(idx, argc)
+        val trader = level.getBlockEntity(pos)
+        if(trader !is AutoTraderTileentity)
+            throw MishapBadBlock.of(pos, "easyflaying:trader.auto")
+        return trader
+    }
+
+    fun List<Iota>.getAutoTraderWithVillager(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): AutoTraderTileentity {
+        val pos = this.getBlockPos(idx, argc)
+        val trader = level.getBlockEntity(pos)
+        if(trader !is AutoTraderTileentity || trader.hasVillager() != isFull)
+            throw MishapBadBlock.of(pos, "easyflaying:trader.auto." + (if (isFull) "filled" else "empty"))
         return trader
     }
 

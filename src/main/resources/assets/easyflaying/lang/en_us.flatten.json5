@@ -8,11 +8,21 @@
     },
     page: {
       tradermanip: {
-        itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-        yoink: "Inserts a villager or itemized villager into a trader. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-        "expel/": {
-          villager: "Removes the villager from a trader, and returns it to the world as a live villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-          item: "Removes the villager from a trader, and returns it to the world as an item. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$."
+        "trader/": {
+          has: "Returns whether or not a trader has a villager in it.",
+          remaining: "Returns the number of uses left for a trade at an index. Returns -1 if the trader has no villager or the index is out of bounds.",
+          index: {
+            amount: "Returns the number of different trades in a trader. Returns -1 if the trader has no villager.",
+            get: "Returns the currently selected index of an auto trader. Returns -1 if the trader has no villager."
+          }
+        },
+        "villager/": {
+          itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+          yoink: "Inserts a villager or itemized villager into a trader. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+          "expel/": {
+            villager: "Removes the villager from a trader, and returns it to the world as a live villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+            item: "Removes the villager from a trader, and returns it to the world as an item. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$."
+          }
         }
       },
       traderflay: {
@@ -33,6 +43,14 @@
   hexcasting: {
     action: {
       "easyflaying:": {
+        "trader/": {
+          has: "Occupancy Purification",
+          remaining: "TODO",
+          index: {
+            amount: "TODO",
+            get: "TODO"
+          }
+        },
         "villager/": {
           itemize: "Itemize Villager",
           yoink: "Entrap Villager",
@@ -46,8 +64,18 @@
     mishap: {
       bad_block: {
         "easyflaying:": {
-          filled_trader: "a non-empty trader",
-          empty_trader: "an empty trader"
+          trader: {
+            any: {
+              "": "a trader or auto trader",
+              filled: "a non-empty trader/auto trader",
+              empty: "an empty trader/auto trader"
+            },
+            auto: {
+              "": "an auto trader",
+              filled: "a non-empty auto trader",
+              empty: "an empty auto trader"
+            }
+          },
         }
       },
       invalid_value: {
