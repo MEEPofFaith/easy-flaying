@@ -96,6 +96,13 @@ config="${mod_id}.mixins.json"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
+    modId="moreiotas"
+    type="required"
+    versionRange="[0.1.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
     modId="easy_villagers"
     type="required"
     versionRange="[1.1,)"
