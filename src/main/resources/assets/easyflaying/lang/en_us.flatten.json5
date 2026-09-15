@@ -47,10 +47,10 @@
       "easyflaying:": {
         "trader/": {
           has: "Occupancy Purification",
-          remaining: "TODO",
+          remaining: "Stock Purification",
           index: {
-            amount: "TODO",
-            get: "TODO"
+            amount: "Catalog Purification",
+            get: "Purchase Purification"
           },
           trades: "Browsing Purification",
           restock: "Force Overtime"
