@@ -14,7 +14,9 @@
           index: {
             amount: "Returns the number of different trades in a trader. Returns -1 if the trader has no villager.",
             get: "Returns the currently selected index of an auto trader. Returns -1 if the trader has no villager."
-          }
+          },
+          trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
+          restock: "Forces a trader to work overtime, restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$."
         },
         "villager/": {
           itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
@@ -51,7 +53,7 @@
             get: "TODO"
           },
           trades: "Browsing Purification",
-          restock: "Induce Overtime"
+          restock: "Force Overtime"
         },
         "villager/": {
           itemize: "Itemize Villager",

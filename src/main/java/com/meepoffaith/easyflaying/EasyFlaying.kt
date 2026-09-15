@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger
 @Mod(EasyFlaying.MODID)
 class EasyFlaying(modBus: IEventBus, container: ModContainer){
     init{
-        modBus.apply {
+        modBus.apply{
             addListener(EasyFlayingClient::init)
             addListener(EasyFlayingDatagen::init)
         }
