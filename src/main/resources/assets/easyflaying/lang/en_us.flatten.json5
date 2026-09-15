@@ -49,7 +49,9 @@
           index: {
             amount: "TODO",
             get: "TODO"
-          }
+          },
+          trades: "Browsing Purification",
+          restock: "Induce Overtime"
         },
         "villager/": {
           itemize: "Itemize Villager",

@@ -6,10 +6,7 @@ import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.HexRegistries
 import at.petrak.hexcasting.common.lib.hex.HexActions
-import com.meepoffaith.easyflaying.casting.actions.getters.OpGetAutotraderIndex
-import com.meepoffaith.easyflaying.casting.actions.getters.OpGetTradesCount
-import com.meepoffaith.easyflaying.casting.actions.getters.OpHasVillager
-import com.meepoffaith.easyflaying.casting.actions.getters.OpRemainingTrades
+import com.meepoffaith.easyflaying.casting.actions.getters.*
 import com.meepoffaith.easyflaying.casting.actions.spells.OpExpelVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpItemizeVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpYoinkVillager
@@ -21,6 +18,7 @@ object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
     val HAS_TRADER = make("trader/has", HexDir.NORTH_EAST, "wqqwqwqqwaeaqawwdwewdw", OpHasVillager)
     val MAX_TRADER_INDEX = make("trader/index.amount", HexDir.NORTH_EAST, "qqwqwqqqwaqaw", OpGetTradesCount)
     val GET_AUTO_TRADER_INDEX = make("trader/index.get", HexDir.SOUTH_WEST, "wwaqeqwqqwqwqqqewqaww", OpGetAutotraderIndex)
+    val GET_TRADES = make("trader/trades", HexDir.NORTH_EAST, "wdedwaqwqwqwqaqqqqqeqwqaweeew", OpGetTrades)
     val REMAINING_TRADES = make("trader/remaining", HexDir.NORTH_EAST, "weqqqwqwqqaeeeq", OpRemainingTrades)
 
     val ITEMIZE_VILLAGER = make("villager/itemize", HexDir.EAST, "qwqwqwqwqaeqedeqeaqadqdqdwewd", OpItemizeVillager)
