@@ -5,10 +5,12 @@ import at.petrak.hexcasting.api.casting.castables.SpellAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getPositiveIntUnder
 import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.misc.MediaConstants
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAutoTraderWithVillager
 import de.maxhenkel.easyvillagers.blocks.tileentity.AutoTraderTileentity
 
 object OpSetAutoTraderIndex : SpellAction {
+    const val COST = MediaConstants.DUST_UNIT / 100
     override val argc = 2
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val trader = args.getAutoTraderWithVillager(env.world, true, 0)
@@ -16,7 +18,7 @@ object OpSetAutoTraderIndex : SpellAction {
 
         return SpellAction.Result(
             Spell(trader, index),
-            0,
+            COST,
             listOf()
         )
     }
