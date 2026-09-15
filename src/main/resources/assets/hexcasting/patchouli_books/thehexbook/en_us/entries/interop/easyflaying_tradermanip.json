@@ -24,11 +24,11 @@
     },
     {
       "type": "hexcasting:pattern",
-      "op_id": "easyflaying:trader/index.get",
-      "anchor": "easyflaying:trader/index.get",
+      "op_id": "easyflaying:trader/trades",
+      "anchor": "easyflaying:trader/trades",
       "input": "vec",
-      "output": "int",
-      "text": "easyflaying.page.tradermanip.trader/index.get"
+      "output": "[[[item], item]]",
+      "text": "easyflaying.page.tradermanip.trader/trades"
     },
     {
       "type": "hexcasting:pattern",
@@ -40,11 +40,19 @@
     },
     {
       "type": "hexcasting:pattern",
-      "op_id": "easyflaying:trader/trades",
-      "anchor": "easyflaying:trader/trades",
+      "op_id": "easyflaying:trader/index.get",
+      "anchor": "easyflaying:trader/index.get",
       "input": "vec",
-      "output": "[[[item], item]]",
-      "text": "easyflaying.page.tradermanip.trader/trades"
+      "output": "int",
+      "text": "easyflaying.page.tradermanip.trader/index.get"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/index.set",
+      "anchor": "easyflaying:trader/index.set",
+      "input": "vec, int",
+      "output": "",
+      "text": "easyflaying.page.tradermanip.trader/index.set"
     },
     {
       "type": "hexcasting:pattern",

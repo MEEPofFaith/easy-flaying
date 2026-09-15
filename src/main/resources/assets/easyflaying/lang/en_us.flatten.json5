@@ -13,7 +13,8 @@
           remaining: "Returns the number of uses left for a trade at an index. Returns -1 if the trader has no villager or the index is out of bounds.",
           index: {
             amount: "Returns the number of different trades in a trader. Returns -1 if the trader has no villager.",
-            get: "Returns the currently selected index of an auto trader. Returns -1 if the trader has no villager."
+            get: "Returns the currently selected trade index of an auto trader. Returns -1 if the trader has no villager.",
+            set: "Sets the selected trade index of an auto trader."
           },
           trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
           restock: "Forces a trader to work overtime, restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$."
@@ -50,7 +51,8 @@
           remaining: "Stock Purification",
           index: {
             amount: "Catalog Purification",
-            get: "Purchase Purification"
+            get: "Purchase Purification",
+            set: "Purchase Purification II"
           },
           trades: "Browsing Purification",
           restock: "Force Overtime"

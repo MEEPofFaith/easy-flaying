@@ -11,6 +11,7 @@ import com.meepoffaith.easyflaying.casting.actions.spells.OpExpelVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpItemizeVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpRestock
 import com.meepoffaith.easyflaying.casting.actions.spells.OpYoinkVillager
+import com.meepoffaith.easyflaying.casting.actions.spells.setters.OpSetAutoTraderIndex
 
 object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
     HexRegistries.ACTION,
@@ -18,8 +19,9 @@ object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
 ) {
     val HAS_TRADER = make("trader/has", HexDir.NORTH_EAST, "qqwqwqqqwaqaw", OpHasVillager)
     val MAX_TRADER_INDEX = make("trader/index.amount", HexDir.NORTH_EAST, "qqwqwqqqwaqawwdwewdeq", OpGetTradesCount)
-    val GET_AUTO_TRADER_INDEX = make("trader/index.get", HexDir.NORTH_WEST, "qwqqwaqawdeeweeewaqwq", OpGetAutotraderIndex)
     val REMAINING_TRADES = make("trader/remaining", HexDir.NORTH_WEST, "qwqawewaqawewaqwq", OpRemainingTrades)
+    val GET_AUTO_TRADER_INDEX = make("trader/index.get", HexDir.NORTH_WEST, "qwqqwaqawdeeweeewaqwq", OpGetAutoTraderIndex)
+    val SET_AUTO_TRADER_INDEX = make("trader/index.set", HexDir.SOUTH_WEST, "eweewdedwaqqwqqqwdewe", OpSetAutoTraderIndex)
     val GET_TRADES = make("trader/trades", HexDir.NORTH_WEST, "qwqqwaqawdeewewaqawewaqwq", OpGetTrades)
     val RESTOCK_TRADES = make("trader/restock", HexDir.SOUTH_EAST, "waqawdeewewaqawewqawwwadqqqdawwwadqqqeeawwae", OpRestock)
 
