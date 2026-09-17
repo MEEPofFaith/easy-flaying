@@ -1,0 +1,42 @@
+{
+  "name": "easyflaying.entry.interop.villagermanip",
+  "icon": "easy_villagers:villager",
+  "category": "hexcasting:interop",
+  "advancement": "hexcasting:root",
+  "flag": "mod:easyflaying",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/itemize",
+      "anchor": "easyflaying:villager/itemize",
+      "input": "entity",
+      "output": "",
+      "text": "easyflaying.page.villagermanip.itemize"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/yoink",
+      "anchor": "easyflaying:villager/yoink",
+      "input": "entity, vector",
+      "output": "",
+      "text": "easyflaying.page.villagermanip.yoink"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/expel/villager",
+      "anchor": "easyflaying:villager/expel/villager",
+      "input": "vector, vector",
+      "output": "",
+      "text": "easyflaying.page.villagermanip.expel/villager"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:villager/expel/item",
+      "anchor": "easyflaying:villager/expel/item",
+      "input": "vector, vector",
+      "output": "",
+      "text": "easyflaying.page.villagermanip.expel/item"
+    }
+  ]
+}

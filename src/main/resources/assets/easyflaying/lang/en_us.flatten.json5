@@ -3,30 +3,29 @@
     entry: {
       interop: {
         tradermanip: "Trader Manipulation",
+        villagermanip: "Villager Manipulation",
         traderflay: "Flaying Traders"
       }
     },
     page: {
       tradermanip: {
-        "trader/": {
-          has: "Returns whether or not a trader has a villager in it.",
-          remaining: "Returns the number of uses left for a trade at an index. Returns -1 if the trader has no villager or the index is out of bounds.",
-          index: {
-            amount: "Returns the number of different trades in a trader. Returns -1 if the trader has no villager.",
-            get: "Returns the currently selected trade index of an auto trader. Returns -1 if the trader has no villager.",
-            set: "Sets the selected trade index of an auto trader. Costs a negligible amount of _media."
-          },
-          trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
-          restock: "Forces a trader to work overtime, instantly restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$.",
-          cycle: "Cycles a trader's trades. The cost starts at 0.5 $(l:items/amethyst)$(item)Amethyst Dust/$, and multiplies by 1.5 every time you refresh the same villager within the same hex."
+        has: "Returns whether or not a trader has a villager in it.",
+        remaining: "Returns the number of uses left for a trade at an index. Returns -1 if the trader has no villager or the index is out of bounds.",
+        index: {
+          amount: "Returns the number of different trades in a trader. Returns -1 if the trader has no villager.",
+          get: "Returns the currently selected trade index of an auto trader. Returns -1 if the trader has no villager.",
+          set: "Sets the selected trade index of an auto trader. Costs a negligible amount of _media."
         },
-        "villager/": {
-          itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-          yoink: "Inserts a villager or itemized villager into a trader. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-          "expel/": {
-            villager: "Removes the villager from a trader, and returns it to the world as a live villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
-            item: "Removes the villager from a trader, and returns it to the world as an item. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$."
-          }
+        trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
+        restock: "Forces a trader to work overtime, instantly restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$.",
+        cycle: "Cycles a trader's trades. The cost starts at 0.5 $(l:items/amethyst)$(item)Amethyst Dust/$, and multiplies by 1.5 every time you refresh the same villager within the same hex."
+      },
+      villagermanip: {
+        itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+        yoink: "Inserts a villager or itemized villager into a trader. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+        "expel/": {
+          villager: "Removes the villager from a trader, and returns it to the world as a live villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
+          item: "Removes the villager from a trader, and returns it to the world as an item. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$."
         }
       },
       traderflay: {

@@ -4,7 +4,7 @@
   "category": "hexcasting:interop",
   "advancement": "hexcasting:root",
   "flag": "mod:easyflaying",
-  "sortnum": 2,
+  "sortnum": 3,
   "pages": [
     {
       "type": "hexcasting:pattern",
@@ -12,7 +12,7 @@
       "anchor": "easyflaying:trader/has",
       "input": "vec",
       "output": "bool",
-      "text": "easyflaying.page.tradermanip.trader/has"
+      "text": "easyflaying.page.tradermanip.has"
     },
     {
       "type": "hexcasting:pattern",
@@ -20,7 +20,7 @@
       "anchor": "easyflaying:trader/index.amount",
       "input": "vec",
       "output": "int",
-      "text": "easyflaying.page.tradermanip.trader/index.amount"
+      "text": "easyflaying.page.tradermanip.index.amount"
     },
     {
       "type": "hexcasting:pattern",
@@ -28,7 +28,7 @@
       "anchor": "easyflaying:trader/trades",
       "input": "vec",
       "output": "[[[item], item]]",
-      "text": "easyflaying.page.tradermanip.trader/trades"
+      "text": "easyflaying.page.tradermanip.trades"
     },
     {
       "type": "hexcasting:pattern",
@@ -36,7 +36,7 @@
       "anchor": "easyflaying:trader/remaining",
       "input": "vec, int",
       "output": "int",
-      "text": "easyflaying.page.tradermanip.trader/remaining"
+      "text": "easyflaying.page.tradermanip.remaining"
     },
     {
       "type": "hexcasting:pattern",
@@ -44,7 +44,7 @@
       "anchor": "easyflaying:trader/index.get",
       "input": "vec",
       "output": "int",
-      "text": "easyflaying.page.tradermanip.trader/index.get"
+      "text": "easyflaying.page.tradermanip.index.get"
     },
     {
       "type": "hexcasting:pattern",
@@ -52,7 +52,7 @@
       "anchor": "easyflaying:trader/index.set",
       "input": "vec, int",
       "output": "",
-      "text": "easyflaying.page.tradermanip.trader/index.set"
+      "text": "easyflaying.page.tradermanip.index.set"
     },
     {
       "type": "hexcasting:pattern",
@@ -60,7 +60,7 @@
       "anchor": "easyflaying:trader/restock",
       "input": "vec",
       "output": "",
-      "text": "easyflaying.page.tradermanip.trader/restock"
+      "text": "easyflaying.page.tradermanip.restock"
     },
     {
       "type": "hexcasting:pattern",
@@ -68,39 +68,7 @@
       "anchor": "easyflaying:trader/cycle",
       "input": "vec",
       "output": "",
-      "text": "easyflaying.page.tradermanip.trader/cycle"
-    },
-    {
-      "type": "hexcasting:pattern",
-      "op_id": "easyflaying:villager/itemize",
-      "anchor": "easyflaying:villager/itemize",
-      "input": "entity",
-      "output": "",
-      "text": "easyflaying.page.tradermanip.villager/itemize"
-    },
-    {
-      "type": "hexcasting:pattern",
-      "op_id": "easyflaying:villager/yoink",
-      "anchor": "easyflaying:villager/yoink",
-      "input": "entity, vector",
-      "output": "",
-      "text": "easyflaying.page.tradermanip.villager/yoink"
-    },
-    {
-      "type": "hexcasting:pattern",
-      "op_id": "easyflaying:villager/expel/villager",
-      "anchor": "easyflaying:villager/expel/villager",
-      "input": "vector, vector",
-      "output": "",
-      "text": "easyflaying.page.tradermanip.villager/expel/villager"
-    },
-    {
-      "type": "hexcasting:pattern",
-      "op_id": "easyflaying:villager/expel/item",
-      "anchor": "easyflaying:villager/expel/item",
-      "input": "vector, vector",
-      "output": "",
-      "text": "easyflaying.page.tradermanip.villager/expel/item"
+      "text": "easyflaying.page.tradermanip.cycle"
     }
   ]
 }
