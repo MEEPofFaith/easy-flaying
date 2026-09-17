@@ -17,7 +17,8 @@
             set: "Sets the selected trade index of an auto trader. Costs a negligible amount of _media."
           },
           trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
-          restock: "Forces a trader to work overtime, instantly restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$."
+          restock: "Forces a trader to work overtime, instantly restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$.",
+          cycle: "Cycles a trader's trades. The cost starts at 0.5 $(l:items/amethyst)$(item)Amethyst Dust/$, and multiplies by 1.5 every time you refresh the same villager within the same hex."
         },
         "villager/": {
           itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",
@@ -55,7 +56,8 @@
             set: "Purchase Purification II"
           },
           trades: "Browsing Purification",
-          restock: "Force Overtime"
+          restock: "Force Overtime",
+          cycle: "Cycle Trades"
         },
         "villager/": {
           itemize: "Itemize Villager",
@@ -74,7 +76,8 @@
             any: {
               "": "a trader or auto trader",
               filled: "a non-empty trader/auto trader",
-              empty: "an empty trader/auto trader"
+              empty: "an empty trader/auto trader",
+              leveled: "a trader with unlocked trades"
             },
             auto: {
               "": "an auto trader",

@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.HexRegistries
 import at.petrak.hexcasting.common.lib.hex.HexActions
 import com.meepoffaith.easyflaying.casting.actions.getters.*
+import com.meepoffaith.easyflaying.casting.actions.spells.OpCycle
 import com.meepoffaith.easyflaying.casting.actions.spells.OpExpelVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpItemizeVillager
 import com.meepoffaith.easyflaying.casting.actions.spells.OpRestock
@@ -24,6 +25,7 @@ object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
     val SET_AUTO_TRADER_INDEX = make("trader/index.set", HexDir.SOUTH_WEST, "eweewdedwaqqwqqqwdewe", OpSetAutoTraderIndex)
     val GET_TRADES = make("trader/trades", HexDir.NORTH_WEST, "qwqqwaqawdeewewaqawewaqwq", OpGetTrades)
     val RESTOCK_TRADES = make("trader/restock", HexDir.SOUTH_EAST, "waqawdeewewaqawewqawwwadqqqdawwwadqqqeeawwae", OpRestock)
+    val CYCLE_TRADES = make("trader/cycle", HexDir.SOUTH_EAST, "waqawawqwdedwqwqqwqwwadeeedeqqwwqwwwdaqqqaq", OpCycle)
 
     val ITEMIZE_VILLAGER = make("villager/itemize", HexDir.EAST, "qwqwqwqwqaeqedeqeaqadqdqdwewd", OpItemizeVillager)
     val YOINK_VILLAGER = make("villager/yoink", HexDir.NORTH_WEST, "eqwqwqwqaeqedeqeaqadqdeeaqqwwqwwqwwqwwqwwqw", OpYoinkVillager)

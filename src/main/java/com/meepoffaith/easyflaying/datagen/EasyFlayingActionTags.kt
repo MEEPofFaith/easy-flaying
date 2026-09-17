@@ -17,7 +17,8 @@ class EasyFlayingActionTags(
 ) : TagsProvider<ActionRegistryEntry>(output, HexRegistries.ACTION, provider, EasyFlaying.MODID, null) {
     override fun addTags(provider: HolderLookup.Provider) {
         for(entry in arrayOf(
-            EasyFlayingActions.RESTOCK_TRADES
+            EasyFlayingActions.RESTOCK_TRADES,
+            EasyFlayingActions.CYCLE_TRADES
         )){
             tag(HexTags.Actions.CAN_START_ENLIGHTEN).add(entry.key)
             tag(HexTags.Actions.PER_WORLD_PATTERN).add(entry.key)
