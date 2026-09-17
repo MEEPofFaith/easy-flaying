@@ -15,7 +15,7 @@ object OpRestock : SpellAction {
     override val argc = 1
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val trader = args.getAnyTraderWithVillager(env.world, true, 0)
+        val trader = args.getAnyTraderWithVillager(env, true, 0)
 
         return SpellAction.Result(
             SpellRestock(trader),

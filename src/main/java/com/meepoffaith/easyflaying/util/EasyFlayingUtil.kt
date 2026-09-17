@@ -1,6 +1,7 @@
 package com.meepoffaith.easyflaying.util
 
 import at.petrak.hexcasting.api.HexAPI
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getBlockPos
 import at.petrak.hexcasting.api.casting.iota.EntityIota
 import at.petrak.hexcasting.api.casting.iota.Iota
@@ -32,42 +33,47 @@ object EasyFlayingUtil{
         return nbt.getCompound("NeoForgeData").getBoolean("hexcasting:brainswept")
     }
 
-    fun List<Iota>.getAnyTrader(level: ServerLevel, idx: Int, argc: Int = 0): TraderTileentityBase {
+    fun List<Iota>.getAnyTrader(env: CastingEnvironment, idx: Int, argc: Int = 0): TraderTileentityBase {
         val pos = this.getBlockPos(idx, argc)
-        val trader = level.getBlockEntity(pos)
+        env.assertPosInRange(pos)
+        val trader = env.world.getBlockEntity(pos)
         if(trader !is TraderTileentityBase)
             throw MishapBadBlock.of(pos, "easyflaying:trader.any")
         return trader
     }
 
-    fun List<Iota>.getAnyTraderWithVillager(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): TraderTileentityBase {
+    fun List<Iota>.getAnyTraderWithVillager(env: CastingEnvironment, isFull: Boolean, idx: Int, argc: Int = 0): TraderTileentityBase {
         val pos = this.getBlockPos(idx, argc)
-        val trader = level.getBlockEntity(pos)
+        env.assertPosInRange(pos)
+        val trader = env.world.getBlockEntity(pos)
         if(trader !is TraderTileentityBase || trader.hasVillager() != isFull)
             throw MishapBadBlock.of(pos, "easyflaying:trader.any." + (if (isFull) "filled" else "empty"))
         return trader
     }
 
-    fun List<Iota>.getAutoTrader(level: ServerLevel, idx: Int, argc: Int = 0): AutoTraderTileentity {
+    fun List<Iota>.getAutoTrader(env: CastingEnvironment, idx: Int, argc: Int = 0): AutoTraderTileentity {
         val pos = this.getBlockPos(idx, argc)
-        val trader = level.getBlockEntity(pos)
+        env.assertPosInRange(pos)
+        val trader = env.world.getBlockEntity(pos)
         if(trader !is AutoTraderTileentity)
             throw MishapBadBlock.of(pos, "easyflaying:trader.auto")
         return trader
     }
 
-    fun List<Iota>.getAutoTraderWithVillager(level: ServerLevel, isFull: Boolean, idx: Int, argc: Int = 0): AutoTraderTileentity {
+    fun List<Iota>.getAutoTraderWithVillager(env: CastingEnvironment, isFull: Boolean, idx: Int, argc: Int = 0): AutoTraderTileentity {
         val pos = this.getBlockPos(idx, argc)
-        val trader = level.getBlockEntity(pos)
+        env.assertPosInRange(pos)
+        val trader = env.world.getBlockEntity(pos)
         if(trader !is AutoTraderTileentity || trader.hasVillager() != isFull)
             throw MishapBadBlock.of(pos, "easyflaying:trader.auto." + (if (isFull) "filled" else "empty"))
         return trader
     }
 
-    fun List<Iota>.getVillager(level: ServerLevel, idx: Int, argc: Int = 0): Either<Villager, ItemEntity> {
+    fun List<Iota>.getVillager(env: CastingEnvironment, idx: Int, argc: Int = 0): Either<Villager, ItemEntity> {
         val datum = this.getOrElse(idx) { throw MishapNotEnoughArgs(idx + 1, this.size) }
         if(datum is EntityIota) {
-            val entity = datum.getEntity(level)
+            val entity = datum.getEntity(env.world)
+            env.assertEntityInRange(entity)
             when(entity){
                 is Villager if entity.isAlive ->
                     return Either.left(entity)

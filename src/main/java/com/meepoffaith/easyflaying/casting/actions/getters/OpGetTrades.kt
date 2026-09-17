@@ -11,7 +11,7 @@ import ram.talia.moreiotas.api.casting.iota.ItemStackIota
 object OpGetTrades : ConstMediaAction{
     override val argc = 1
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
-        val trader = args.getAnyTraderWithVillager(env.world, true, 0)
+        val trader = args.getAnyTraderWithVillager(env, true, 0)
         val offers = trader.villagerEntity!!.offers
         val trades = mutableListOf<Iota>()
         for(offer in offers){

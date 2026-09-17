@@ -9,7 +9,7 @@ import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAutoTrader
 object OpGetAutoTraderIndex : ConstMediaAction{
     override val argc = 1
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
-        val target = args.getAutoTrader(env.world, 0)
+        val target = args.getAutoTrader(env, 0)
         return (if(target.hasVillager()) target.tradeIndex else -1).asActionResult
     }
 }

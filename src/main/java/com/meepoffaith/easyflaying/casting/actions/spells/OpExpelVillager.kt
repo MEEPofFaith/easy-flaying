@@ -19,7 +19,7 @@ class OpExpelVillager(val toItem: Boolean) : SpellAction{
     override val argc = 2
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val trader = args.getAnyTraderWithVillager(env.world, true, 0)
+        val trader = args.getAnyTraderWithVillager(env, true, 0)
         val target = args.getVec3(1)
 
         return SpellAction.Result(

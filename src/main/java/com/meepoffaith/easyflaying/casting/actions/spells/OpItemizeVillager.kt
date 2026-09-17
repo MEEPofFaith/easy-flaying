@@ -18,7 +18,7 @@ object OpItemizeVillager : SpellAction{
     override val argc = 1
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val target = args.getVillager(env.world, 0)
+        val target = args.getVillager(env, 0)
 
         return target.map({ villager ->
             SpellAction.Result(

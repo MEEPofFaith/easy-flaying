@@ -10,7 +10,7 @@ import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTrader
 object OpRemainingTrades : ConstMediaAction {
     override val argc = 2
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
-        val target = args.getAnyTrader(env.world, 0)
+        val target = args.getAnyTrader(env, 0)
         if(!target.hasVillager()) return (-1).asActionResult
 
         val index = args.getInt(1)

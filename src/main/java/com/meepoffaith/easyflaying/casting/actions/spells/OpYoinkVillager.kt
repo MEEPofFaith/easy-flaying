@@ -23,8 +23,8 @@ object OpYoinkVillager : SpellAction{
         args: List<Iota>,
         env: CastingEnvironment
     ): SpellAction.Result{
-        val target = args.getVillager(env.world, 0)
-        val trader = args.getAnyTraderWithVillager(env.world, false, 1)
+        val target = args.getVillager(env, 0)
+        val trader = args.getAnyTraderWithVillager(env, false, 1)
 
         return target.map({ villager ->
             SpellAction.Result(

@@ -9,7 +9,7 @@ import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTrader
 object OpGetTradesCount : ConstMediaAction{
     override val argc = 1
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
-        val trader = args.getAnyTrader(env.world, 0)
+        val trader = args.getAnyTrader(env, 0)
         if(!trader.hasVillager()) return (-1).asActionResult
 
         return trader.villagerEntity!!.offers.size.asActionResult

@@ -25,7 +25,7 @@ object OpCycle : SpellAction{
         env: CastingEnvironment,
         userData: CompoundTag
     ) : SpellAction.Result {
-        val trader = args.getAnyTraderWithVillager(env.world, true, 0)
+        val trader = args.getAnyTraderWithVillager(env, true, 0)
         val villager = trader.villagerEntity!!
         if(villager.villagerXp > 0)
             throw MishapBadBlock.of(args.getBlockPos(0), "easyflaying:trader.any.leveled")

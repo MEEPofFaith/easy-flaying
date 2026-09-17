@@ -13,7 +13,7 @@ object OpSetAutoTraderIndex : SpellAction {
     const val COST = MediaConstants.DUST_UNIT / 100
     override val argc = 2
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
-        val trader = args.getAutoTraderWithVillager(env.world, true, 0)
+        val trader = args.getAutoTraderWithVillager(env, true, 0)
         val index = args.getPositiveIntUnder(1, trader.villagerEntity!!.offers.size)
 
         return SpellAction.Result(
