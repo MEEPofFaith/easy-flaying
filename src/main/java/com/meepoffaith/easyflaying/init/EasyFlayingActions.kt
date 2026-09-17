@@ -7,11 +7,7 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.HexRegistries
 import at.petrak.hexcasting.common.lib.hex.HexActions
 import com.meepoffaith.easyflaying.casting.actions.getters.*
-import com.meepoffaith.easyflaying.casting.actions.spells.OpCycle
-import com.meepoffaith.easyflaying.casting.actions.spells.OpExpelVillager
-import com.meepoffaith.easyflaying.casting.actions.spells.OpItemizeVillager
-import com.meepoffaith.easyflaying.casting.actions.spells.OpRestock
-import com.meepoffaith.easyflaying.casting.actions.spells.OpYoinkVillager
+import com.meepoffaith.easyflaying.casting.actions.spells.*
 import com.meepoffaith.easyflaying.casting.actions.spells.setters.OpSetAutoTraderIndex
 
 object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(

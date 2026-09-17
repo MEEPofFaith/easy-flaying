@@ -1,6 +1,5 @@
 package com.meepoffaith.easyflaying.util
 
-import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
 import at.petrak.hexcasting.api.utils.getOrCreateCompound
 import at.petrak.hexcasting.api.utils.putCompound
 import com.meepoffaith.easyflaying.EasyFlaying

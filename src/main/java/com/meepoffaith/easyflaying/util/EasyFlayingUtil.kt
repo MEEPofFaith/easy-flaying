@@ -15,7 +15,6 @@ import de.maxhenkel.easyvillagers.blocks.tileentity.TraderTileentityBase
 import de.maxhenkel.easyvillagers.datacomponents.VillagerData
 import de.maxhenkel.easyvillagers.entity.EasyVillagerEntity
 import de.maxhenkel.easyvillagers.items.VillagerItem
-import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.npc.Villager
 import net.minecraft.world.item.ItemStack
