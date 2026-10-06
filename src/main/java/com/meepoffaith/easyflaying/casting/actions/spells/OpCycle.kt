@@ -17,7 +17,7 @@ import kotlin.math.pow
 import kotlin.math.roundToLong
 
 object OpCycle : SpellAction{
-    val COST = MediaConstants.DUST_UNIT / 2
+    const val COST = MediaConstants.DUST_UNIT / 2
     override val argc = 1
 
     override fun executeWithUserdata(
