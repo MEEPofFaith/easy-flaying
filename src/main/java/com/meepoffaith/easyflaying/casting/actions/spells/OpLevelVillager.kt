@@ -8,6 +8,7 @@ import at.petrak.hexcasting.api.casting.getBlockPos
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadBlock
 import at.petrak.hexcasting.api.misc.MediaConstants
+import com.meepoffaith.easyflaying.mixin.VillagerAccessor
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTraderWithVillager
 import net.minecraft.world.entity.npc.Villager
 import net.minecraft.world.entity.npc.VillagerData
@@ -39,6 +40,7 @@ object OpLevelVillager : SpellAction {
     private data class Spell(val villager: Villager, val xp: Int) : RenderedSpell{
         override fun cast(env: CastingEnvironment) {
             villager.villagerXp = xp
+            (villager as VillagerAccessor).`easyflaying$levelUp`()
         }
     }
 }

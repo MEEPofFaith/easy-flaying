@@ -9,6 +9,7 @@
     "OpBrainsweepMixin",
     "TraderTileentityBaseAccessor",
     "TraderTileentityBaseMixin",
+    "VillagerAccessor",
     "VillagerDataAccessor",
     "VillagerDataMixin",
     "VillagerItemMixin",
