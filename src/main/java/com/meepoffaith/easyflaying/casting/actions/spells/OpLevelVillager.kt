@@ -12,6 +12,7 @@ import com.meepoffaith.easyflaying.mixin.VillagerAccessor
 import com.meepoffaith.easyflaying.util.EasyFlayingUtil.getAnyTraderWithVillager
 import net.minecraft.world.entity.npc.Villager
 import net.minecraft.world.entity.npc.VillagerData
+import net.minecraft.world.entity.npc.VillagerProfession
 
 // From the Minecraft Wiki (https://minecraft.wiki/w/Villager#Experience_levels)
 // +10 to Apprentice, +60 to Journeyman, +80 to Expert, +100 to Master
@@ -24,10 +25,11 @@ object OpLevelVillager : SpellAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val trader = args.getAnyTraderWithVillager(env, true, 0)
         val villager = trader.villagerEntity!!
+        val profession = villager.villagerData.profession
         val currentLevel = villager.villagerData.level
         val nextXp = VillagerData.getMaxXpPerLevel(currentLevel)
-        if(nextXp == 0)
-            throw MishapBadBlock.of(args.getBlockPos(0), "easyflaying:trader.any.maxed")
+        if(nextXp == 0 || profession == VillagerProfession.NONE || profession == VillagerProfession.NITWIT)
+            throw MishapBadBlock.of(args.getBlockPos(0), "easyflaying:trader.any.cannot_level")
         val minXp = VillagerData.getMinXpPerLevel(currentLevel)
         val progress = (villager.villagerXp - minXp).toDouble() / (nextXp - minXp)
 

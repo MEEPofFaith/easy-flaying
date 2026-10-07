@@ -79,7 +79,7 @@
               filled: "a non-empty trader/auto trader",
               empty: "an empty trader/auto trader",
               leveled: "a trader with unlocked trades",
-              maxed: "a villager that can be levelled up"
+              cannot_level: "a villager that can be levelled up"
             },
             auto: {
               "": "an auto trader",
