@@ -15,24 +15,25 @@ import net.minecraft.world.entity.npc.VillagerData
 
 // From the Minecraft Wiki (https://minecraft.wiki/w/Villager#Experience_levels)
 // +10 to Apprentice, +60 to Journeyman, +80 to Expert, +100 to Master
-// Cost: 3 dust per xp?
+// Cost: 20 dust * current level
 
 object OpLevelVillager : SpellAction {
-    const val BASE_COST = MediaConstants.DUST_UNIT * 3
+    const val BASE_COST = MediaConstants.DUST_UNIT * 20
     override val argc = 1
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
         val trader = args.getAnyTraderWithVillager(env, true, 0)
         val villager = trader.villagerEntity!!
         val currentLevel = villager.villagerData.level
-        val nextLevel = VillagerData.getMaxXpPerLevel(currentLevel)
-        if(nextLevel == 0)
+        val nextXp = VillagerData.getMaxXpPerLevel(currentLevel)
+        if(nextXp == 0)
             throw MishapBadBlock.of(args.getBlockPos(0), "easyflaying:trader.any.maxed")
-        val difference = nextLevel - villager.villagerXp
+        val minXp = VillagerData.getMinXpPerLevel(currentLevel)
+        val progress = (villager.villagerXp - minXp).toDouble() / (nextXp - minXp)
 
         return SpellAction.Result(
-            Spell(villager, nextLevel),
-            BASE_COST * difference,
+            Spell(villager, nextXp),
+            (BASE_COST * currentLevel * (1 - progress)).toLong(),
             listOf(ParticleSpray.cloud(trader.blockPos.center, 1.0, 10))
         )
     }

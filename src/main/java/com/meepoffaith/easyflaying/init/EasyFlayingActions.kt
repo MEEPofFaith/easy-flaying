@@ -22,7 +22,7 @@ object EasyFlayingActions : EasyFlayingRegistrar<ActionRegistryEntry>(
     val GET_TRADES = make("trader/trades", HexDir.NORTH_WEST, "qwqqwaqawdeewewaqawewaqwq", OpGetTrades)
     val RESTOCK_TRADES = make("trader/restock", HexDir.SOUTH_EAST, "waqawdeewewaqawewqawwwadqqqdawwwadqqqeeawwae", OpRestock)
     val CYCLE_TRADES = make("trader/cycle", HexDir.SOUTH_EAST, "waqawawqwdedwqwqqwqwwadeeedeqqwwqwwwdaqqqaq", OpCycle)
-    val LEVEL_TRADES = make("trader/level", HexDir.NORTH_EAST, "qeqwqwqwqwqeqawadweeewdwwdeqedwd", OpLevelVillager)
+    val LEVEL_TRADES = make("trader/levelup", HexDir.NORTH_EAST, "qeqwqwqwqwqeqawadweeewdwwdeqedwd", OpLevelVillager)
 
     val ITEMIZE_VILLAGER = make("villager/itemize", HexDir.EAST, "qwqwqwqwqaeqedeqeaqadqdqdwewd", OpItemizeVillager)
     val YOINK_VILLAGER = make("villager/yoink", HexDir.NORTH_WEST, "eqwqwqwqaeqedeqeaqadqdeeaqqwwqwwqwwqwwqwwqw", OpYoinkVillager)

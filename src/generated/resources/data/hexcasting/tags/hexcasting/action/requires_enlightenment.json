@@ -2,6 +2,6 @@
   "values": [
     "easyflaying:trader/restock",
     "easyflaying:trader/cycle",
-    "easyflaying:trader/level"
+    "easyflaying:trader/levelup"
   ]
 }

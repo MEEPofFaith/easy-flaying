@@ -69,6 +69,14 @@
       "input": "vec",
       "output": "",
       "text": "easyflaying.page.tradermanip.cycle"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "easyflaying:trader/levelup",
+      "anchor": "easyflaying:trader/levelup",
+      "input": "vec",
+      "output": "",
+      "text": "easyflaying.page.tradermanip.levelup"
     }
   ]
 }
