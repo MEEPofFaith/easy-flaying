@@ -19,7 +19,7 @@
         trades: "Returns a list of the trades in a trader. Each trade is a list with a list of inputs, and the output.",
         restock: "Forces a trader to work overtime, instantly restocking their trades. Costs 5 $(l:items/amethyst)$(item)Charged Amethyst/$.",
         cycle: "Cycles a trader's trades. The cost starts at 0.5 $(l:items/amethyst)$(item)Amethyst Dust/$, and multiplies by 1.5 every time you refresh the same villager within the same hex.",
-        levelup: "Levels up a trader's trades. Costs 20 $(l:items/amethyst)$(item)Amethyst Dust/$ * the villager's current level. This price is reduced by the amount of experience the villager already has."
+        levelup: "Levels up a trader's trades. Costs 15 $(l:items/amethyst)$(item)Charged Amethyst/$ + an additional 2 $(l:items/amethyst)$(item)Charged Amethyst/$ for each level the villager already has. This price is reduced by the amount of experience the villager already has."
       },
       villagermanip: {
         itemize: "Transforms a villager into a villager item, or a villager item back into a villager. Costs one $(l:items/amethyst)$(item)Amethyst Shard/$.",

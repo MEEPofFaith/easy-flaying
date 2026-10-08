@@ -19,7 +19,8 @@ import net.minecraft.world.entity.npc.VillagerProfession
 // Cost: 20 dust * current level
 
 object OpLevelVillager : SpellAction {
-    const val BASE_COST = MediaConstants.DUST_UNIT * 20
+    const val BASE_COST = MediaConstants.DUST_UNIT * 150
+    const val INCREASE = MediaConstants.DUST_UNIT * 20
     override val argc = 1
 
     override fun execute(args: List<Iota>, env: CastingEnvironment): SpellAction.Result {
@@ -35,7 +36,7 @@ object OpLevelVillager : SpellAction {
 
         return SpellAction.Result(
             Spell(villager, nextXp),
-            (BASE_COST * currentLevel * (1 - progress)).toLong(),
+            ((BASE_COST + INCREASE * (currentLevel - 1)) * (1 - progress)).toLong(),
             listOf(ParticleSpray.cloud(trader.blockPos.center, 1.0, 10))
         )
     }
